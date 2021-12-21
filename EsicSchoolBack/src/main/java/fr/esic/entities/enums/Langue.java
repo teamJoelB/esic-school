@@ -1,0 +1,37 @@
+package fr.esic.entities.enums;
+
+public enum Langue {
+	Mandarin,
+	Hindi,
+	Espagnol,
+	Arabe,
+	Bengali,
+	Russe,
+	Portugais,
+	Indonésien,
+	Ourdou,
+	Allemand,
+	Japonais,
+	Swahili,
+	Marathi,
+	Télougou,
+	Turc,
+	Cantonais,
+	Tamoul,
+	Pendjabi_occidental,
+	Wu,
+	Coréen,
+	Vietnamien,
+	Haoussa,
+	Javanais,
+	Arabe_égyptien,
+	Italien,
+	Thaï,
+	Gujarati,
+	Kannada,
+	Persan,
+	Bhodjpouri,
+	Minnan,
+	Philippin
+
+}
