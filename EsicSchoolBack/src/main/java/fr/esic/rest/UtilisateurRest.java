@@ -22,12 +22,13 @@ public class UtilisateurRest {
 	@Autowired
 	UtilisateurRepository userRepo;
 	
+	//Afficher tout les utilisateur
 	@GetMapping("utilisateur")
 	public Iterable<Utilisateur> getAllUtilisateur(){
-		
 		return userRepo.findAll();
 	}
 	
+	// Creer un nouvel utilisateur (inscription)
 	@PostMapping("utilisateur")
 	public Utilisateur createUtilisateur (@RequestBody Utilisateur i) {
 		userRepo.save(i);
@@ -35,23 +36,54 @@ public class UtilisateurRest {
 		
 	}
 	
+	// Afficher un utilisateur suivant son id
 	@GetMapping("utilisateur/{id}")
 	public Optional<Utilisateur> getOneUtilisateur (@PathVariable Long id){	
 		return userRepo.findById(id);
 	}
 	
+	// Suprimer un utilisateur suivant son id ???????????????
 	@RequestMapping("utilisateur/del/{id}")
 	public void deleteUtilisateur(@PathVariable Long id){	
 		
 		userRepo.deleteById(id);
 	}
 	
+	// Modifier un utilisateur
 	@PostMapping("utilisateur/modification")
 	public Utilisateur modifUtilisateur (@RequestBody Utilisateur id) {
 		userRepo.save(id);
-		return id;
-		
+		return id;	
 	}
+
+	// Vérifier les login et mdp pour se connecter
+	@PostMapping("connexion")
+	public Utilisateur connect(@RequestBody Utilisateur p) {
+		return userRepo.getByLoginAndPassword(p.getMail(), p.getMdp());
+		}
+	
+	//Afficher tout les candidats
+	@GetMapping("candidats")
+	public Iterable<Utilisateur> getAllCandidat(){
+		return userRepo.findAll();
+	}
+	
+	
+	//Affichier tout les respos (fonctionnalités que pour l'admin)
+	
+	
+
+	
+	// Modifier les données des candidats 
+	
+	
+	
+	
+	
+	// indiquer la demande de suppression d'un utilisateur
+	
+	
+	
 	
 
 }

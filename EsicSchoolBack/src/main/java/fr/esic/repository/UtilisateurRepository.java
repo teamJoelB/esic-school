@@ -9,4 +9,10 @@ public interface UtilisateurRepository extends CrudRepository<Utilisateur, Long>
 	
 	@Query(value = "SELECT p FROM Utilisateur p WHERE p.mail = ?1 AND p.mdp = ?2")
 	public Utilisateur getByLoginAndPassword(String mail, String mdp);
+	
+	@Query(value = "SELECT p FROM Utilisateur p WHERE p.role = RESPONSABLE_PEDAGOGIQUE")
+	public Utilisateur getByRespo();
+	
+	
+	
 }
