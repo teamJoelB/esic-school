@@ -16,9 +16,6 @@ import lombok.NoArgsConstructor;
 
 @AllArgsConstructor @Data @NoArgsConstructor
 @Entity
-
-
-
 public class Questions {
 	/*void Constructor(text, choice, answer)
 		this.text=text;
@@ -30,11 +27,11 @@ public class Questions {
 		return this.answer===choice;*/
 	
 	@Id @GeneratedValue
-	private Long idquestion;
+	private Long id;
 	private String question;
-	@ManyToOne
-	private String formation;
-	public static String bonnereponse;
+	//@ManyToOne
+	//private String formation;
+	private String bonneReponse;
 	
 }
 

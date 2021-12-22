@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import fr.esic.entities.Questions;
 
-public interface QuestionsRepository extends CrudRepository{
-	List<Questions> findByNom(String formation);
+public interface QuestionsRepository extends CrudRepository<Questions, Long>{
+	//List<Questions> findByNom(String formation);
 }
 	

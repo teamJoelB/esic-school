@@ -26,23 +26,27 @@ public class FormationRest {
 	@GetMapping("formation")
 	public  Iterable<Formation> getAllFormation(){
 		return formationRepo.findAll();
-		}
+	}
 	
 	@DeleteMapping("formation")
-	public Map<String, Boolean> deleteFormation(@PathVariable(value = "id") Long idformation)
-	  throws ResourceNotFoundException {
+	public Map<String, Boolean> deleteFormation(@PathVariable(value = "id") Long idformation){
+	 /* throws ResourceNotFoundException {
 	   Formation formation = formationRepo.findById(idformation)
-	      .orElseThrow(() -> new ResourceNotFoundException("Aucune formation trouvée pour l'id :: " + idformation));
+	      .orElseThrow(() -> new ResourceNotFoundException("Aucune formation trouvée pour l'id :: " + idformation));*/
 
 	    //formationRepo.delete(formation);
 	    Map<String, Boolean> response = new HashMap<>();
 	    response.put("deleted", Boolean.TRUE);
 	    return response;
 	}
-	
+	/*
 	@PostMapping("formation")
 	public Formation createFormation(@Validated @RequestBody Formation formation) {
 		return formationRepo.save(formation);
+	}*/
+	@PostMapping("formation")
+	public Formation createFormation(@RequestBody Formation f) {
+		return formationRepo.save(f);
 	}
 	
 

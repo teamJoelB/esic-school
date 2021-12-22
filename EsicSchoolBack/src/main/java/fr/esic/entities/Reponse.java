@@ -12,13 +12,12 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor @AllArgsConstructor @Data
 @Entity
-
 public class Reponse {
 	@Id @GeneratedValue
-	private Long idReponse;
+	private Long id;
 	private String intitule; //private String intitule;
-	@OneToOne
-	private Questions idquestion;
-	private Boolean type;
+	//@OneToOne
+	//private Questions idquestion;
+	private boolean type;
 	
 }
