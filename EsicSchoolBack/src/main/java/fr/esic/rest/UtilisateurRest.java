@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import fr.esic.entities.Utilisateur;
 import fr.esic.repository.UtilisateurRepository;
@@ -21,48 +22,34 @@ public class UtilisateurRest {
 	@Autowired
 	UtilisateurRepository userRepo;
 	
-	// Vérifier les login et mdp pour se connecter
-	@PostMapping("connexion")
-	public Utilisateur connect(@RequestBody Utilisateur p) {
-		return userRepo.getByLoginAndPassword(p.getMail(), p.getMdp());
-	}
-	
-	// Creer un nouvel utilisateur (inscription)
-	@PostMapping("inscription")
-	public Utilisateur createUtilisateur (@RequestBody Utilisateur i) {
-		userRepo.save(i);
-		return i;
-	}
-	
-	// Afficher tous les utilisateurs (fonctionnalité Administrateur)
-	@GetMapping("admin/utilisateurs")
+	@GetMapping("utilisateur")
 	public Iterable<Utilisateur> getAllUtilisateur(){
+		
 		return userRepo.findAll();
 	}
 	
-	// Afficher un utilisateur suivant son id (fonctionnalité Administrateur)
-	@GetMapping("admin/utilisateurs/{id}")
+	@PostMapping("utilisateur")
+	public Utilisateur createUtilisateur (@RequestBody Utilisateur i) {
+		userRepo.save(i);
+		return i;		
+	}
+	
+	@GetMapping("utilisateur/{id}")
 	public Optional<Utilisateur> getOneUtilisateur (@PathVariable Long id){	
 		return userRepo.findById(id);
 	}
 	
-	// Suprimer un utilisateur suivant son mail (fonctionnalité Administrateur)
-	@DeleteMapping("admin/utilisateurs/{mail}")
-	public void deleteUtilisateur(@PathVariable String mail){
-		userRepo.deleteByMail(mail);
+	@RequestMapping("utilisateur/del/{id}")
+	public void deleteUtilisateur(@PathVariable Long id){	
+		
+		userRepo.deleteById(id);
 	}
 	
-	//Afficher tous les candidats (visibles par tout le monde sauf les candidats)
-	@GetMapping("candidats")
-	public Iterable<Utilisateur> getAllCandidat(){
-		return userRepo.findAllCandidat();
+	@PostMapping("utilisateur/modification")
+	public Utilisateur modifUtilisateur (@RequestBody Utilisateur id) {
+		userRepo.save(id);
+		return id;
+		
 	}
-	
-	//Afficher tous les respos (fonctionnalité Administrateur)
-	@GetMapping("responsables")
-	public Iterable<Utilisateur> getAllResponsable(){
-		return userRepo.findAllResponsable();
-	}
-	
 
 }
