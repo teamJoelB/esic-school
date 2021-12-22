@@ -17,14 +17,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor @Data @NoArgsConstructor
 @Entity
 public class Questions {
-	/*void Constructor(text, choice, answer)
-		this.text=text;
-		this.choice=choice;
-		this.answer=answer;
 	
-	
-	isCorrectAnswer(choice)
-		return this.answer===choice;*/
 	
 	@Id @GeneratedValue
 	private Long id;
@@ -35,16 +28,7 @@ public class Questions {
 	
 }
 
-
-		
 	
-
-
-/*public void AllQuestions(Long idquestion, String question, String bonnereponse) {
-	this.idquestion=idquestion;
-	this.question=question;
-	this.bonnereponse=bonnereponse;*/
-
 
 
 

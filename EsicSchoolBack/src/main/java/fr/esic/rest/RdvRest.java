@@ -61,7 +61,7 @@ public class RdvRest {
 	}
 	
 	//VERSION 1
-	
+	/*
 	@PostMapping("admin/creation_rdv")
 	public Rdv creationRdv(@RequestBody Rdv r) {
 		rdvRep.save(r);
@@ -76,9 +76,9 @@ public class RdvRest {
 				+ "\t" + r.getEmetteur().getPrenom() + " " + r.getEmetteur().getNomUsage();
 		sendMail(r.getDestinataire().getMail(), r.getObjet(), contenu);
 		return r;
-	}
-	/*
-	@PostMapping("admin/creation_rdv/{prenom}_{nomUsage}")
+	}*/
+	
+	@PostMapping("admin/{prenom}_{nomUsage}/creation_rdv")
 	public Rdv creationRdv(@RequestBody Rdv r, @PathVariable String prenom, @PathVariable String nomUsage) {
 		rdvRep.save(r);
 		String contenu = "Bonjour " + r.getDestinataire().getPrenom()
@@ -92,7 +92,7 @@ public class RdvRest {
 				+ "\t" + prenom + " " + nomUsage;
 		sendMail(r.getDestinataire().getMail(), r.getObjet(), contenu);
 		return r;
-	}*/
+	}
 	
 	@GetMapping("candidat/{id}/mes_rdv")
 	public Iterable<Rdv> dispAllRdv(@PathVariable Long id) {
@@ -108,11 +108,11 @@ public class RdvRest {
 	@PutMapping("candidat/{id}/mes_rdv")
 	public void valideRdv(@RequestBody Rdv r) throws ResourceNotFoundException {
 		Rdv rdv = rdvRep.findById(null).orElseThrow(() -> ResourceNotFoundException("RDV non existant"));	
-	}*/
+	}
 	@PutMapping("candidat/{id}/mes_rdv")
 	public void valideRdv(@RequestBody Rdv r) {
 		r.setValider(true);
-	}
+	}*/
 	
 	@DeleteMapping("candidat/{id}/mes_rdv")
 	public void deleteOneRdv(@RequestBody Rdv r) {
