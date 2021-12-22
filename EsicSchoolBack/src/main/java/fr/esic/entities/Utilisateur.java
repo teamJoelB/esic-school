@@ -34,6 +34,7 @@ public class Utilisateur {
 	private String prenom;
 	
 	// ATTRIBUTS PROPRES AU CANDIDAT
+	
 	private String nomNaissance;
 	private boolean civ;
 	@CreationTimestamp
@@ -42,8 +43,10 @@ public class Utilisateur {
 	@Temporal(TemporalType.DATE)
 	private Date dateNaissance;
 	private String lieuNaissance;
-	@ManyToOne
-	private Adresse adresse;
+	//private Adresse adresse;
+	private String adresse;
+	private int codePostal;
+	private String Ville;
 	private String telFixe;
 	private String telPortable;
 	private String nationalité;
@@ -55,7 +58,10 @@ public class Utilisateur {
 	private String prenomRepresentant;
 	// creer enum (père, mère, tuteur, autres)
 	private String typeRepresentant;
-	private Adresse adresseRepresentant;
+	//private Adresse adresseRepresentant;
+	private String adresseRepresentant;
+	private int codePostalRepresentant;
+	private String villeRepresentant;
 	private String telFixeRepresentant;
 	private String telPortableRepresentant;
 	private String emailRepresentant;
@@ -96,8 +102,14 @@ public class Utilisateur {
 	
 	private boolean trouveEntreprise;  // 
 	private String nomEntreprise;
-	private Adresse adresseSiegeSocial;
-	private Adresse adresseEntreprise;  // l'adresse ou l'étudiant va travailler
+	//private Adresse adresseSiegeSocial;
+	private String adresseSiegeSocial;
+	private int codePostalSiegeSocial;
+	private String VilleSiegeSocial;
+	//private Adresse adresseEntreprise;  // l'adresse ou l'étudiant va travailler
+	private String adresseEntreprise;
+	private int codePostalEntreprise;
+	private String VilleEntreprise;
 	private boolean contratSigne;
 	@Temporal(TemporalType.DATE)
 	private Date dateDemarrageContrat;

@@ -34,7 +34,7 @@ public class Questions {
 	private String question;
 	@ManyToOne
 	private String formation;
-	private String bonnereponse;
+	public static String bonnereponse;
 	
 }
 
