@@ -1,4 +1,6 @@
+/*
 package fr.esic.entities;
+ 
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,3 +20,4 @@ public class Adresse {
 	private String ville;
 	private String pays;
 }
+*/
