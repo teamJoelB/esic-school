@@ -24,7 +24,6 @@ public class UtilisateurRest {
 	
 	@GetMapping("utilisateur")
 	public Iterable<Utilisateur> getAllUtilisateur(){
-		
 		return userRepo.findAll();
 	}
 	
@@ -32,7 +31,6 @@ public class UtilisateurRest {
 	public Utilisateur createUtilisateur (@RequestBody Utilisateur i) {
 		userRepo.save(i);
 		return i;
-		
 	}
 	
 	@GetMapping("utilisateur/{id}")
@@ -41,8 +39,7 @@ public class UtilisateurRest {
 	}
 	
 	@RequestMapping("utilisateur/del/{id}")
-	public void deleteUtilisateur(@PathVariable Long id){	
-		
+	public void deleteUtilisateur(@PathVariable Long id){
 		userRepo.deleteById(id);
 	}
 	
