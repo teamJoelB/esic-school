@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Formation {
 	@Id @GeneratedValue
-	private Long idFormation;
-	private int nivcertif; //private String niveau certification;
+	private Long id;
+	private int nivCertif; //private String niveau certification;
+
 }
