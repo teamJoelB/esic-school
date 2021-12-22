@@ -60,6 +60,8 @@ public class RdvRest {
 		}
 	}
 	
+	//VERSION 1
+	
 	@PostMapping("admin/creation_rdv")
 	public Rdv creationRdv(@RequestBody Rdv r) {
 		rdvRep.save(r);
@@ -75,11 +77,33 @@ public class RdvRest {
 		sendMail(r.getDestinataire().getMail(), r.getObjet(), contenu);
 		return r;
 	}
+	/*
+	@PostMapping("admin/creation_rdv/{prenom}_{nomUsage}")
+	public Rdv creationRdv(@RequestBody Rdv r, @PathVariable String prenom, @PathVariable String nomUsage) {
+		rdvRep.save(r);
+		String contenu = "Bonjour " + r.getDestinataire().getPrenom()
+				+ " " + r.getDestinataire().getNomUsage() + ",\n"
+				+ "\nVous êtes convoqué pour un entretien visio via Teams à la date du "
+				+ r.getDate() +".\n"
+				+ "Vous trouverez le lien de la réunion ci-dessous : \n"
+				+ r.getLien() + "\n"
+				+ "Pour valider ou refuser ce RDV, connectez-vous à votre espace personnel.\n"
+				+ r.getMessage() + "\n\nCordialement,\n\n"
+				+ "\t" + prenom + " " + nomUsage;
+		sendMail(r.getDestinataire().getMail(), r.getObjet(), contenu);
+		return r;
+	}*/
 	
 	@GetMapping("candidat/{id}/mes_rdv")
 	public Iterable<Rdv> dispAllRdv(@PathVariable Long id) {
 		return rdvRep.getRdvForOne(id);
 	}
+	
+	@GetMapping("rdv")
+	public Iterable<Rdv> dispAllRdv() {
+		return rdvRep.findAll();
+	}
+	
 	/*
 	@PutMapping("candidat/{id}/mes_rdv")
 	public void valideRdv(@RequestBody Rdv r) throws ResourceNotFoundException {

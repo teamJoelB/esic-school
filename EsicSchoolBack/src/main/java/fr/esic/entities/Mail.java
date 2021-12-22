@@ -2,8 +2,8 @@ package fr.esic.entities;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,7 +14,7 @@ public class Mail {
 	@Id @GeneratedValue
 	private Long id;
 	private String objet;
-	@OneToOne
+	@ManyToOne
 	private Utilisateur destinataire;
 	private String message;
 	

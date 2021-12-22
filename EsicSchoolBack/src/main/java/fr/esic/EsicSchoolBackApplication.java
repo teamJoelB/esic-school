@@ -1,5 +1,7 @@
 package fr.esic;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -7,9 +9,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 import fr.esic.entities.Formation;
+import fr.esic.entities.Rdv;
 import fr.esic.repository.FormationRepository;
-
-
+import fr.esic.repository.RdvRepository;
 import fr.esic.entities.Utilisateur;
 import fr.esic.entities.enums.Role;
 import fr.esic.repository.UtilisateurRepository;
@@ -21,6 +23,8 @@ public class EsicSchoolBackApplication implements CommandLineRunner {
 	private FormationRepository formationRepo;
 	@Autowired
 	private UtilisateurRepository userRepo;
+	@Autowired
+	private RdvRepository rdvRepo;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(EsicSchoolBackApplication.class, args);
@@ -37,9 +41,12 @@ public class EsicSchoolBackApplication implements CommandLineRunner {
 		userRepo.save(u3);
 		System.out.println(u3);
 		Utilisateur u1 = new Utilisateur(Role.CANDIDAT, null, "chameau@yahoo.fr", "lama", "Sapin", "Noël", null, false, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, 0, null, null, null, null, false, null, null, null, false, null, null, false, null, null, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, false, 0, false, null, null, 0, null, null, 0, null, false, null, null, null, null, null, null, null, false, null, null, null, null, null, null, null, null, null, null);
-		Utilisateur u2 = new Utilisateur(Role.CANDIDAT, null, "burtznicolas@yahoo.fr", "banane", "Burtz", "Nicolas", null, false, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, 0, null, null, null, null, false, null, null, null, false, null, null, false, null, null, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, false, 0, false, null, null, 0, null, null, 0, null, false, null, null, null, null, null, null, null, false, null, null, null, null, null, null, null, null, null, null);
+		Utilisateur u2 = new Utilisateur(Role.CONSEILLER_DE_FORMATION, null, "burtznicolas@yahoo.fr", "banane", "Burtz", "Nicolas", null, false, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, 0, null, null, null, null, false, null, null, null, false, null, null, false, null, null, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, false, 0, false, null, null, 0, null, null, 0, null, false, null, null, null, null, null, null, null, false, null, null, null, null, null, null, null, null, null, null);
+		Utilisateur u4 = new Utilisateur(Role.CANDIDAT, null, "juliette.pims@gmail.com", "chameau", "Lama", "Sté", null, false, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, 0, null, null, null, null, false, null, null, null, false, null, null, false, null, null, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, false, 0, false, null, null, 0, null, null, 0, null, false, null, null, null, null, null, null, null, false, null, null, null, null, null, null, null, null, null, null);
 		userRepo.save(u1);
 		userRepo.save(u2);
-
+		userRepo.save(u4);
+		Rdv r1 = new Rdv(null, new Date(), "entretien test 58", u2, u4, "lien@teams", "Ceci est un message additionnel.", false);
+		rdvRepo.save(r1);
 	}
 }
