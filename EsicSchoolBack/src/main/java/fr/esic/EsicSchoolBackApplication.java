@@ -23,7 +23,7 @@ public class EsicSchoolBackApplication implements CommandLineRunner {
 		
 		Formation f1=new Formation(null,7);
 		Formation f2=new Formation(null,5);
-		//formationRepo.save(f1);
+		FormationRepository.save(f1);
 		
 		
 	}
