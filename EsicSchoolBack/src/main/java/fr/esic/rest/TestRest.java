@@ -24,11 +24,11 @@ public class TestRest {
 	public Iterable<Test> getAllTests(){
 		return testRepo.findAll();
 	}
-	/*
+	
 	@PostMapping("test")
 	public Test createTest(@Validated @RequestBody Test test) {
 		return testRepo.save(test);
-	}*/
+	}
 	
 	/*
 	public void PassageTest(){

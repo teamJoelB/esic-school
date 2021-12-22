@@ -80,15 +80,15 @@ public class RdvRest {
 	public Iterable<Rdv> dispAllRdv(@PathVariable Long id) {
 		return rdvRep.getRdvForOne(id);
 	}
-	/*
-	@PutMapping("candidat/{id}/mes_rdv")
+	
+	/*@PutMapping("candidat/{id}/mes_rdv")
 	public void valideRdv(@RequestBody Rdv r) throws ResourceNotFoundException {
 		Rdv rdv = rdvRep.findById(null).orElseThrow(() -> ResourceNotFoundException("RDV non existant"));	
-	}*/
+	}
 	@PutMapping("candidat/{id}/mes_rdv")
 	public void valideRdv(@RequestBody Rdv r) {
 		r.setValider(true);
-	}
+	}*/
 	
 	@DeleteMapping("candidat/{id}/mes_rdv")
 	public void deleteOneRdv(@RequestBody Rdv r) {
