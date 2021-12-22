@@ -17,7 +17,7 @@ public interface UtilisateurRepository extends CrudRepository<Utilisateur, Long>
 	public Iterable<Utilisateur> findAllResponsable();
 
 //	@Query(value = "UPDATE Utilisateur p SET p.?1 = p.?2 WHERE p.mail = ?3")
-//	public Utilisateur ModifyCandidat(String Data, String Value, String mail);
+//	public Utilisateur modifyCandidat(String data, String value, String mail);
 
 	@Query(value = "DELETE FROM Utilisateur p WHERE p.mail= ?1")
 	public void deleteByMail(String mail);

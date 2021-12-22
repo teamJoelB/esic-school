@@ -52,4 +52,16 @@ public class UtilisateurRest {
 		
 	}
 
+
+	
+	// Modifier les données des candidats     (supprimer puis recapter les donnée pour les reenregistrer)
+//	@PostMapping("candidat"){
+	
+//	}
+		
+	
+	// indiquer via un mail de supprimer un utilisateur (via son mail)
+	
+
+
 }
