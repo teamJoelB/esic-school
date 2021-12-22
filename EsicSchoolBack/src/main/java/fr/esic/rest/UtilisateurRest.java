@@ -63,7 +63,6 @@ public class UtilisateurRest {
 	public Iterable<Utilisateur> getAllResponsable(){
 		return userRepo.findAllResponsable();
 	}
-<<<<<<< HEAD
 
 	
 	// Modifier les données des candidats     (supprimer puis recapter les donnée pour les reenregistrer)
@@ -74,16 +73,7 @@ public class UtilisateurRest {
 	
 	// indiquer via un mail de supprimer un utilisateur (via son mail)
 	
-	
-	
-	
-	// Suprimer un utilisateur suivant son mail
-	@RequestMapping("utilisateur/del/{mail}")
-	public void deleteUtilisateur(@PathVariable String mail){	
-		userRepo.deleteByMail(mail);
-	}
-=======
->>>>>>> branch 'master' of https://github.com/teamJoelB/esic-school.git
+
 	
 
 }
