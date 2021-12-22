@@ -32,8 +32,8 @@ public class RdvRest {
 
 	@Autowired
 	private RdvRepository rdvRep;
-	private String emetteur = "juliette.pims@gmail.com";
-	private String password = "Jaavmc1J!";
+	private String contactEcole = "studyroadsesic@gmail.com";
+	private String mdpEcole = "esicschool6!";
 	
 	public void sendMail(String destinataire, String objet, String contenu) {
 		
@@ -45,13 +45,13 @@ public class RdvRest {
 		
 		Session session = Session.getInstance(props, new Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(emetteur, password);
+				return new PasswordAuthentication(contactEcole, mdpEcole);
 			}
 		});
 		
 		try {
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress(emetteur));
+			message.setFrom(new InternetAddress(contactEcole));
 			message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(destinataire));
 			message.setSubject(objet);
 			message.setText(contenu);
@@ -84,9 +84,7 @@ public class RdvRest {
 	/*
 	@PutMapping("candidat/{id}/mes_rdv")
 	public void valideRdv(@RequestBody Rdv r) throws ResourceNotFoundException {
-		Rdv rdv = rdvRep.findById(null).orElseThrow(() -> ResourceNotFoundException("RDV non existant"));
-		
-		
+		Rdv rdv = rdvRep.findById(null).orElseThrow(() -> ResourceNotFoundException("RDV non existant"));	
 	}*/
 	@PutMapping("candidat/{id}/mes_rdv")
 	public void valideRdv(@RequestBody Rdv r) {
