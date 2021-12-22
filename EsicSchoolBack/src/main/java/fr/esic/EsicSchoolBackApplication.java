@@ -22,8 +22,6 @@ public class EsicSchoolBackApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		System.out.println("lancement projet OK");
 		
-	
-
 	Utilisateur u1 = new Utilisateur(null, null, "0" ,null, "burtznicolas@yahoo.fr", null, null, false, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, 0, null, null, null, null, false, null, null, null, false, null, null, false, null, null, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, false, 0, false, null, null, 0, null, null, 0, null, false, null, null, null, null, null, null, null, false, null, null, null, null, null, null, null, null, null, null);
 	userRepo.save(u1);
 	System.out.println(u1);

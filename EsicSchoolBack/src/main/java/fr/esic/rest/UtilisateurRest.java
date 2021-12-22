@@ -75,13 +75,12 @@ public class UtilisateurRest {
 		return userRepo.findAllResponsable();
 	}
 
-/*	
-	// Modifier les données des candidats     (PLUS BESOIN DE DEMANDE AU NIVEAU SUPPERIEUR ? ok ?)
-	@PostMapping("candidat")
-	public Utilisateur ModifyCandidat(String mail, String Data, String value){
-		return userRepo.ModifyCandidat(mail, Data, value);
-	}
-*/		
+	
+	// Modifier les données des candidats     (supprimer puis recapter les donnée pour les reenregistrer)
+//	@PostMapping("candidat"){
+	
+//	}
+		
 	
 	// indiquer via un mail de supprimer un utilisateur (via son mail)
 	
