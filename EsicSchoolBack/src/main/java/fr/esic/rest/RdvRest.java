@@ -23,6 +23,7 @@ import javax.mail.Transport;
 
 import fr.esic.entities.Rdv;
 import fr.esic.repository.RdvRepository;
+import fr.esic.services.MailService;
 
 @RestController
 
@@ -31,36 +32,8 @@ public class RdvRest {
 
 	@Autowired
 	private RdvRepository rdvRep;
-	private String contactEcole = "studyroadsesic@gmail.com";
-	private String mdpEcole = "esicschool6!";
 	
-	public void sendMail(String destinataire, String objet, String contenu) {
-		
-		Properties props = new Properties();
-		props.put("mail.smtp.auth", "true");
-		props.put("mail.smtp.starttls.enable", "true");
-		props.put("mail.smtp.host", "smtp.gmail.com");
-		props.put("mail.smtp.port", "587");
-		
-		Session session = Session.getInstance(props, new Authenticator() {
-			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(contactEcole, mdpEcole);
-			}
-		});
-		
-		try {
-			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress(contactEcole));
-			message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(destinataire));
-			message.setSubject(objet);
-			message.setText(contenu);
-			Transport.send(message);
-		} catch (MessagingException e) {
-			throw new RuntimeException(e);
-		}
-	}
-	
-	//VERSION 1
+	// VERSION 1
 	/*
 	@PostMapping("admin/creation_rdv")
 	public Rdv creationRdv(@RequestBody Rdv r) {
@@ -76,8 +49,10 @@ public class RdvRest {
 				+ "\t" + r.getEmetteur().getPrenom() + " " + r.getEmetteur().getNomUsage();
 		sendMail(r.getDestinataire().getMail(), r.getObjet(), contenu);
 		return r;
-	}*/
+	}
+	*/
 	
+	// VERSION 2
 	@PostMapping("admin/{prenom}_{nomUsage}/creation_rdv")
 	public Rdv creationRdv(@RequestBody Rdv r, @PathVariable String prenom, @PathVariable String nomUsage) {
 		rdvRep.save(r);
@@ -90,7 +65,7 @@ public class RdvRest {
 				+ "Pour valider ou refuser ce RDV, connectez-vous à votre espace personnel.\n"
 				+ r.getMessage() + "\n\nCordialement,\n\n"
 				+ "\t" + prenom + " " + nomUsage;
-		sendMail(r.getDestinataire().getMail(), r.getObjet(), contenu);
+		MailService.sendMail(r.getDestinataire().getMail(), r.getObjet(), contenu);
 		return r;
 	}
 	
@@ -114,11 +89,12 @@ public class RdvRest {
 		r.setValider(true);
 	}*/
 	
+	/*
 	@DeleteMapping("candidat/{id}/mes_rdv")
 	public void deleteOneRdv(@RequestBody Rdv r) {
 		rdvRep.delete(r);
 	}
-	
+	*/
 	
 	
 }

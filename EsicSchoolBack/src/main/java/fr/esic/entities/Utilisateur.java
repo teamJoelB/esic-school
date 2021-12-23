@@ -1,6 +1,5 @@
 package fr.esic.entities;
 
-import java.io.File;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -34,26 +33,12 @@ public class Utilisateur {
 	private String prenom;
 	
 	//ATTRIBUTS PROPRES A L AVANCEMENT INSCRIPTION
-	private int avancementInscrit;  // 0 juste un compte 1 postule 2 piece valide 3 attente test 4 test passé attente result 5 inscrit
+	private int avancementInscrit;  //-1 compte non actif 0 juste un compte 1 postule 2 piece valide 3 attente test 4 test passé attente result 5 inscrit
 	@ManyToOne
 	private Formation formation;
 	
-	public Utilisateur(Role role, Long id, String mail, String mdp, String nomUsage, String prenom,
-			int avancementInscrit, Formation formation) {
-		super();
-		this.role = role;
-		this.id = id;
-		this.mail = mail;
-		this.mdp = mdp;
-		this.nomUsage = nomUsage;
-		this.prenom = prenom;
-		this.avancementInscrit = avancementInscrit;
-		this.formation = formation;
-	}
-	
-	
 	// ATTRIBUTS PROPRES AU CANDIDAT
-	
+	private boolean actif;
 	private String nomNaissance;
 	private boolean civ;
 	@CreationTimestamp
@@ -170,6 +155,33 @@ public class Utilisateur {
 	private String nomhandi;
 	@Lob
 	private byte[] handi;
-		
+	
+	public Utilisateur(Role role, Long id, String mail, String mdp, String nomUsage, String prenom, int avancementInscrit, Formation formation, boolean actif) {
+		super();
+		this.role = role;
+		this.id = id;
+		this.mail = mail;
+		this.mdp = mdp;
+		this.nomUsage = nomUsage;
+		this.prenom = prenom;
+		this.avancementInscrit = avancementInscrit;
+		this.formation = formation;
+		this.actif = actif;
+	}
 
+	public Utilisateur(String nomPieceid, byte[] pieceid, String nomCv, byte[] cv, String nomlm, byte[] lm,
+			String nomddo, String nomrn, byte[] rn, String nomhandi, byte[] handi) {
+		super();
+		this.nomPieceid = nomPieceid;
+		Pieceid = pieceid;
+		this.nomCv = nomCv;
+		this.cv = cv;
+		this.nomlm = nomlm;
+		this.lm = lm;
+		this.nomddo = nomddo;
+		this.nomrn = nomrn;
+		this.rn = rn;
+		this.nomhandi = nomhandi;
+		this.handi = handi;
+	}
 }

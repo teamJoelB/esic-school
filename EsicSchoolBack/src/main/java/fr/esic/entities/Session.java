@@ -1,8 +1,12 @@
 package fr.esic.entities;
 
+import java.sql.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,17 +15,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor @AllArgsConstructor @Data
 @Entity
 
-public class Qcm {
-	
+public class Session {
 	@Id @GeneratedValue
 	private Long id;
-	private String txt;
-	private String p1;
-	private String p2;
-	private String p3;
-	private String p4;
-	private int reponse;
-	private String formation; // a faire en clef etragnere apres les premiers tests si possible
-
+	private String session;
+	
 	
 }
