@@ -131,17 +131,13 @@ public class UtilisateurRest {
 	//ajout des info de l'utilisateur lors de l'inscription a une formation
 	@PutMapping("qcm/{id}")
 	public ResponseEntity<Utilisateur> modifQcm(@PathVariable Long id, @RequestBody Utilisateur userDetails) throws ResourceNotFoundException {
-		Optional<Qcm> b = userRepo.findById(id);
+		Optional<Utilisateur> b = userRepo.findById(id);
 		if(b.isPresent()) {
-			Qcm q = qcmRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Formation avec Qcm : " + id + " non trouvée"));
-			q.setFormation(qcmDetails.getFormation());
-			q.setP1(qcmDetails.getP1());
-			q.setP2(qcmDetails.getP2());
-			q.setP3(qcmDetails.getP3());
-			q.setP4(qcmDetails.getP4());
-			q.setTxt(qcmDetails.getTxt());
-			q.setReponse(qcmDetails.getReponse());
-			final Qcm qUpdated = qcmRepo.save(q);
+			Utilisateur q = userRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Formation avec Qcm : " + id + " non trouvée"));
+			
+			q.setNomNaissance(userDetails.getNomNaissance());
+			
+			final Utilisateur qUpdated = userRepo.save(q);
 		    return ResponseEntity.ok(qUpdated);
 		}else {
 			System.err.println("QCM non trouvé");

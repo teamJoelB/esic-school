@@ -104,7 +104,7 @@ public class EsicSchoolBackApplication implements CommandLineRunner {
 		Session s5 = new Session(null,"Session du 18/09/2022 au 15/06/2023 - RCM");
 		Session s6 = new Session(null,"Session du 25/09/2022 au 15/06/2023 - AR");
 		Session s7 = new Session(null,"Session du 22/09/2022 au 15/05/2023 - CEA");
-		Session s8 = new Session(null,"___________________________________________________");
+		Session s8 = new Session(null,"____________________________________________");
 				
 		sessionRepo.save(s1);
 		sessionRepo.save(s2);
