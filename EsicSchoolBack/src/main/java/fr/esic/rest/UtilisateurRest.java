@@ -69,7 +69,7 @@ public class UtilisateurRest {
 		return userRepo.findAllResponsable();
 	}
 	
-<<<<<<< HEAD
+
 	//Modifier un utilisateur
 	@PostMapping("modif_utilisateur")
 	public Utilisateur modifyUtilisateur(@RequestBody Utilisateur p) {
@@ -85,8 +85,6 @@ public class UtilisateurRest {
 	}
 	
 
-
-=======
 	@PutMapping("image/{id}")
 	public Utilisateur setImageProduit(@RequestBody byte[] img,@RequestBody String nom, @PathVariable Long id) {
 		System.out.println("requête lancé");
@@ -94,6 +92,4 @@ public class UtilisateurRest {
 		System.out.println("image modifiée");
 		return userRepo.save(userRepo.findById(id).get());
 	}
-	
->>>>>>> branch 'master' of https://github.com/teamJoelB/esic-school.git
 }
