@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
@@ -25,8 +26,8 @@ import fr.esic.repository.UtilisateurRepository;
 import fr.esic.repository.VisiteurRepository;
 import fr.esic.services.MailService;
 
-@RestController
 
+@RestController
 @CrossOrigin("*")
 public class UtilisateurRest {
 
@@ -40,6 +41,7 @@ public class UtilisateurRest {
 	// Vérifier les login et mdp pour se connecter
 	@PostMapping("connexion")
 	public Optional<Utilisateur> connect(@RequestBody Utilisateur p) {
+		
 		return userRepo.getByLoginAndPassword(p.getMail(), p.getMdp());
 	}
 	
@@ -99,7 +101,7 @@ public class UtilisateurRest {
 	public Iterable<Utilisateur> getAllResponsable(){
 		return userRepo.findAllResponsable();
 	}
-		
+
 	//ajout des pdf de l'utilisateur
 	@PutMapping("inscription/pdf/{id}")
 	public ResponseEntity<Utilisateur> ajoutPdf(@PathVariable Long id, @RequestBody Utilisateur utilisateurDetails) throws ResourceNotFoundException {
@@ -222,9 +224,8 @@ public class UtilisateurRest {
 		}else {
 			System.err.println("QCM non trouvé");
 			return null;
-		}	
+		}}}	
 		
-	}	
 	
 	
 	
@@ -238,11 +239,4 @@ public class UtilisateurRest {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-}
+

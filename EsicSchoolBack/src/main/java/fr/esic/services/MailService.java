@@ -1,6 +1,10 @@
 package fr.esic.services;
 
+import java.net.PasswordAuthentication;
 import java.util.Properties;
+
+import org.apache.catalina.Authenticator;
+import org.apache.logging.log4j.message.Message;
 
 import fr.esic.entities.Session;
 

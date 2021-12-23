@@ -24,7 +24,7 @@ public class SessionRest {
 	}
 	
 	@PostMapping("session")
-	public Session createSession (@RequestBody Session s) {
+	public Session createSession(@RequestBody Session s) {
 		sessionRepo.save(s);
 		return s;
 	}
