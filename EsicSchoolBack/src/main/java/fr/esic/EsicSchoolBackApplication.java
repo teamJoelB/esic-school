@@ -80,7 +80,7 @@ public class EsicSchoolBackApplication implements CommandLineRunner {
 				null, 0, null, null, null, null, null, null, null, null, null, null, false, 0, false, null, null, 0,
 				null, null, 0, null, false, null, null, null, null, null, null, null, false, null, null, null, null,
 				null, null, null, null, null, null);*/
-		/*
+	/*	
 		Utilisateur u1 = new Utilisateur(Role.CANDIDAT, null, "juliette.pims@gmail.com", "chameau", "Lama", "Sté", null, false, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, 0, null, null, null, null, false, null, null, null, false, null, null, false, null, null, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, false, 0, false, null, null, 0, null, null, 0, null, false, null, null, null, null, null, null, null, false, null, null, null, null, null, null, null, null, null, null, null, null);
 		Utilisateur u2 = new Utilisateur(Role.CONSEILLER_DE_FORMATION, null, "faux@gmail.com", "sapin", "Con", "Nard", null, false, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, 0, null, null, null, null, false, null, null, null, false, null, null, false, null, null, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, false, 0, false, null, null, 0, null, null, 0, null, false, null, null, null, null, null, null, null, false, null, null, null, null, null, null, null, null, null, null, null, null);
 
@@ -93,7 +93,7 @@ public class EsicSchoolBackApplication implements CommandLineRunner {
 		System.out.println(m1); 
 		MailRest mailRest = new MailRest();
 		mailRest.mailCreationCompte(u2);
-		 */
+		*/ 
 
 		Qcm q1 = new Qcm(null,"tentaive 1 de question","rep 1","rep2","rep3","rep4",2,"Administrateur_reseau3");
 		Qcm q2 = new Qcm(null,"tentaive 2 de question","rep 1","rep2","rep3","rep4",2,"Administrateur_reseau");
