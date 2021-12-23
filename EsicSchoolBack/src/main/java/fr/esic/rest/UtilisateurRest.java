@@ -16,8 +16,11 @@ import org.springframework.http.ResponseEntity;
 
 import fr.esic.entities.Mail;
 import fr.esic.entities.Utilisateur;
+import fr.esic.entities.Visiteur;
 import fr.esic.entities.enums.Role;
+import fr.esic.repository.MailRepository;
 import fr.esic.repository.UtilisateurRepository;
+import fr.esic.repository.VisiteurRepository;
 import fr.esic.services.MailService;
 
 @RestController
@@ -27,6 +30,10 @@ public class UtilisateurRest {
 
 	@Autowired
 	UtilisateurRepository userRepo;
+	@Autowired
+	MailRepository mailRepo;
+	@Autowired
+	VisiteurRepository visitRepo;
 	
 	// Vérifier les login et mdp pour se connecter
 	@PostMapping("connexion")
@@ -34,20 +41,32 @@ public class UtilisateurRest {
 		return userRepo.getByLoginAndPassword(p.getMail(), p.getMdp());
 	}
 	
-	// Creer un nouvel utilisateur (inscription)
-	@PostMapping("inscription")
-	public Utilisateur createUtilisateur(@RequestBody Utilisateur u) {
-		u.setRole(Role.CANDIDAT);
-		u.setActif(true);
-		userRepo.save(u);
-		int tailleCode = 6;
-		String code = MailService.getRandomStr(tailleCode);
-		String objet = "Inscription Essic School";
-		String message = "Bonjour, \n\nVeuillez saisir le code ci-dessous pour finaliser votre inscription à Esic School :\n"
-				+ "\t" + code;
-		Mail m = new Mail(null, objet, u, message, code);
-		MailService.sendMail(u.getMail(), objet, message);
-		return u;
+	@PostMapping("verifmail/{id}")
+	public ResponseEntity<Visiteur> verifUtilisateur(@PathVariable Long id, @RequestBody Visiteur v) throws ResourceNotFoundException {
+		Visiteur vBd = visitRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Visiteur avec ID : " + id + " non trouvé"));
+		boolean codeIsOk = false;
+		System.out.println(vBd.getCode());
+		System.out.println(v.getTentative());
+		int tentative = v.getTentative();
+		tentative++;
+		if (vBd.getCode().equals(v.getCode()) && tentative < 4) {
+			Utilisateur u = new Utilisateur();
+			u.setMail(v.getMail());
+			u.setMdp(v.getMdp());
+			u.setNomUsage(v.getNomUsage());
+			u.setPrenom(v.getPrenom());
+			u.setRole(Role.CANDIDAT);
+			u.setActif(true);
+			u.setAvancementInscrit(0);
+			userRepo.save(u);
+			vBd.setOk(true);
+			System.out.print("REUSSI");
+		} else {
+			vBd.setTentative(tentative);
+			System.out.print("FAUX");
+		}
+		final Visiteur vUpdated = visitRepo.save(vBd);
+	    return ResponseEntity.ok(vUpdated);
 	}
 	
 	// Afficher tous les utilisateurs (fonctionnalité Administrateur)
@@ -67,6 +86,7 @@ public class UtilisateurRest {
 	public ResponseEntity<Utilisateur> desactiveUtilisateur(@PathVariable Long id) throws ResourceNotFoundException {
 		Utilisateur u = userRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Utilisateur avec ID : " + id + " non trouvé"));
 		u.setActif(false);
+		u.setAvancementInscrit(-1);
 		final Utilisateur uUpdated = userRepo.save(u);
 	    return ResponseEntity.ok(uUpdated);
 	}

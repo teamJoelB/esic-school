@@ -34,7 +34,7 @@ public class Utilisateur {
 	private String prenom;
 	
 	//ATTRIBUTS PROPRES A L AVANCEMENT INSCRIPTION
-	private int avancementInscrit;  // 0 juste un compte 1 postule 2 piece valide 3 attente test 4 test passé attente result 5 inscrit
+	private int avancementInscrit;  //-1 compte non actif 0 juste un compte 1 postule 2 piece valide 3 attente test 4 test passé attente result 5 inscrit
 	@ManyToOne
 	private Formation formation;
 	
@@ -156,6 +156,8 @@ public class Utilisateur {
 	private String nomhandi;
 	@Lob
 	private byte[] handi;
+	
+	private String code;
 	
 	public Utilisateur(Role role, Long id, String mail, String mdp, String nomUsage, String prenom, int avancementInscrit, Formation formation, boolean actif) {
 		super();
