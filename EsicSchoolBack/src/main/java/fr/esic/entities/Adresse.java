@@ -1,4 +1,4 @@
-/*
+
 package fr.esic.entities;
  
 
@@ -20,4 +20,3 @@ public class Adresse {
 	private String ville;
 	private String pays;
 }
-*/

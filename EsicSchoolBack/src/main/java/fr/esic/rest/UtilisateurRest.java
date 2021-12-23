@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import fr.esic.entities.Utilisateur;
+import fr.esic.entities.enums.Role;
 import fr.esic.repository.UtilisateurRepository;
 
 @RestController
@@ -31,6 +32,7 @@ public class UtilisateurRest {
 	// Creer un nouvel utilisateur (inscription)
 	@PostMapping("inscription")
 	public Utilisateur createUtilisateur (@RequestBody Utilisateur i) {
+		i.setRole(Role.CANDIDAT);
 		userRepo.save(i);
 		return i;
 	}
@@ -66,7 +68,7 @@ public class UtilisateurRest {
 	}
 	
 	@PutMapping("image/{id}")
-	public Utilisateur setImageProduit(@RequestBody byte[] img, @PathVariable Long id) {
+	public Utilisateur setImageProduit(@RequestBody byte[] img,@RequestBody String nom, @PathVariable Long id) {
 		System.out.println("requête lancé");
 		userRepo.findById(id).get().setCv(img);
 		System.out.println("image modifiée");
