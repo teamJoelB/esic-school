@@ -34,7 +34,7 @@ public class Utilisateur {
 	private String prenom;
 	
 	//ATTRIBUTS PROPRES A L AVANCEMENT INSCRIPTION
-	private int avancementInscrit;  // 0 juste un compte 1 postule 2 piece valide 3 attente test 4 test passé attente result 5 inscrit
+	private int avancementInscrit;  //-1 compte non actif 0 juste un compte 1 postule 2 piece valide 3 attente test 4 test passé attente result 5 inscrit
 	@ManyToOne
 	private Formation formation;
 	
@@ -157,9 +157,6 @@ public class Utilisateur {
 	@Lob
 	private byte[] handi;
 	
-	
-	
-	
 	public Utilisateur(Role role, Long id, String mail, String mdp, String nomUsage, String prenom, int avancementInscrit, Formation formation, boolean actif) {
 		super();
 		this.role = role;
@@ -172,9 +169,6 @@ public class Utilisateur {
 		this.formation = formation;
 		this.actif = actif;
 	}
-
-
-
 
 	public Utilisateur(String nomPieceid, byte[] pieceid, String nomCv, byte[] cv, String nomlm, byte[] lm,
 			String nomddo, String nomrn, byte[] rn, String nomhandi, byte[] handi) {
