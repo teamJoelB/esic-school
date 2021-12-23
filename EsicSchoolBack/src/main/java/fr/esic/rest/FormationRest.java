@@ -1,6 +1,5 @@
 package fr.esic.rest;
 
-import java.text.Format;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.esic.entities.Formation;
-import fr.esic.entities.Utilisateur;
+import fr.esic.entities.Qcm;
 import fr.esic.repository.FormationRepository;
 
 @RestController
@@ -63,13 +62,19 @@ public class FormationRest {
 	
 	@PutMapping("formation/{id}")
 	public ResponseEntity<Formation> modifFormartion(@PathVariable Long id, @RequestBody Formation formationDetails) throws ResourceNotFoundException {
+		Optional<Formation> b = formationRepo.findById(id);
+		if(b.isPresent()) {
+			Formation f = formationRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Formation avec ID : " + id + " non trouvée"));
+			f.setIntitule(formationDetails.getIntitule());
+			f.setNivCertif(formationDetails.getNivCertif());
+			f.setNomComplet(formationDetails.getNomComplet());
+			final Formation fUpdated = formationRepo.save(f);
+		    return ResponseEntity.ok(fUpdated);
+		}else { 
+			System.err.println("Formation non trouvé");
+			return null;
+		}	
 		
-		Formation f = formationRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Formation avec ID : " + id + " non trouvée"));
-		f.setIntitule(formationDetails.getIntitule());
-		f.setNivCertif(formationDetails.getNivCertif());
-		f.setNomComplet(formationDetails.getNomComplet());
-		final Formation fUpdated = formationRepo.save(f);
-	    return ResponseEntity.ok(fUpdated);
 	}
 	
 	

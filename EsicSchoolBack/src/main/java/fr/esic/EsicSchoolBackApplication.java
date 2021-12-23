@@ -72,10 +72,10 @@ public class EsicSchoolBackApplication implements CommandLineRunner {
 		Qcm q3 = new Qcm(null,"tentaive 3 de question","rep 1","rep2","rep3","rep4",2,"CEA");
 		Qcm q4 = new Qcm(null,"tentaive 4 de question","rep 1","rep2","rep3","rep4",2,"TSSR");
 		Qcm q5 = new Qcm(null,"tentaive 5 de question","rep 1","rep2","rep3","rep4",2,"CEA");
-		Qcm q6= new Qcm(null,"tentaive 6 de question","rep 1","rep2","rep3","rep4",2,"AR");
-		Qcm q7= new Qcm(null,"tentaive 7 de question","rep 1","rep2","rep3","rep4",2,"AR");
-		Qcm q8= new Qcm(null,"tentaive 8 de question","rep 1","rep2","rep3","rep4",2,"AR");
-		Qcm q9= new Qcm(null,"tentaive 69de question","rep 1","rep2","rep3","rep4",2,"CEA");
+		Qcm q6 = new Qcm(null,"tentaive 6 de question","rep 1","rep2","rep3","rep4",2,"AR");
+		Qcm q7 = new Qcm(null,"tentaive 7 de question","rep 1","rep2","rep3","rep4",2,"AR");
+		Qcm q8 = new Qcm(null,"tentaive 8 de question","rep 1","rep2","rep3","rep4",2,"AR");
+		Qcm q9 = new Qcm(null,"tentaive 69de question","rep 1","rep2","rep3","rep4",2,"CEA");
 		
 		qcmRepo.save(q1);
 		qcmRepo.save(q2);

@@ -55,22 +55,35 @@ public class QcmRest {
 	//Modification d'un QCM
 	@PutMapping("qcm/{id}")
 	public ResponseEntity<Qcm> modifQcm(@PathVariable Long id, @RequestBody Qcm qcmDetails) throws ResourceNotFoundException {
+		Optional<Qcm> b = qcmRepo.findById(id);
+		if(b.isPresent()) {
+			Qcm q = qcmRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Formation avec Qcm : " + id + " non trouvée"));
+			q.setFormation(qcmDetails.getFormation());
+			q.setP1(qcmDetails.getP1());
+			q.setP2(qcmDetails.getP2());
+			q.setP3(qcmDetails.getP3());
+			q.setP4(qcmDetails.getP4());
+			q.setTxt(qcmDetails.getTxt());
+			q.setReponse(qcmDetails.getReponse());
+			final Qcm qUpdated = qcmRepo.save(q);
+		    return ResponseEntity.ok(qUpdated);
+		}else {
+			System.err.println("QCM non trouvé");
+			return null;
+		}	
 		
-		Qcm q = qcmRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Formation avec Qcm : " + id + " non trouvée"));
-		q.setFormation(qcmDetails.getFormation());
-		q.setP1(qcmDetails.getP1());
-		q.setP2(qcmDetails.getP2());
-		q.setP3(qcmDetails.getP3());
-		q.setP4(qcmDetails.getP4());
-		q.setTxt(qcmDetails.getTxt());
-		q.setReponse(qcmDetails.getReponse());
-		final Qcm qUpdated = qcmRepo.save(q);
-	    return ResponseEntity.ok(qUpdated);
 	}	
 	
 	@DeleteMapping("qcm/del/{id}")
-	public void deleteQcm(@PathVariable  Long id) {
-		qcmRepo.deleteById(id);
+	public boolean deleteQcm(@PathVariable  Long id) {
+		Optional<Qcm> q = qcmRepo.findById(id);
+		if(q.isPresent()) {
+			qcmRepo.deleteById(id); 
+			return true;
+		}else {
+			System.err.println("QCM non trouvé");
+			return false;
+		}	
 	}
 	
 	
