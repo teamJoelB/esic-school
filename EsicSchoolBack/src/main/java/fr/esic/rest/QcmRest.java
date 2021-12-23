@@ -47,7 +47,7 @@ public class QcmRest {
 	
 	// creation d'un QCM
 	@PostMapping("qcm")
-	public Qcm createQcm (@RequestBody Qcm q) {
+	public Qcm createQcm(@RequestBody Qcm q) {
 		qcmRepo.save(q);
 		return q;
 	}

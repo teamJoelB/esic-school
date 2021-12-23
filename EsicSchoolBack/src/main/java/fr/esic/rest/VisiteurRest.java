@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.esic.entities.Mail;
 import fr.esic.entities.Utilisateur;
 import fr.esic.entities.Visiteur;
 import fr.esic.entities.enums.Role;
