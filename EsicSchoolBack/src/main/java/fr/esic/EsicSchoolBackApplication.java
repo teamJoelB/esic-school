@@ -44,19 +44,18 @@ public class EsicSchoolBackApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		System.out.println("lancement projet OK");
 		
-		Formation f1 = new Formation(null, 5,"TSSR","Technicien_superieur_systeme_et_reseau ?");
-		Formation f2 = new Formation(null, 6,"AR","Administrateur_reseau");
-		Formation f3 = new Formation(null, 7,"ESI","Expert_en_systemes_d_information");
-		Formation f4 = new Formation(null, 6,"CEA","Concepteur_developpeur_d_application");
-		Formation f5 = new Formation(null, 5,"BTSS_LAM","Solutions_logicielles_et_applications_métier");
-		Formation f6 = new Formation(null, 7,"IA","Ingenieur_affaire");
-		Formation f7 = new Formation(null, 6,"RCM","Responsable_commercial_et_marketing");
+		Formation f1 = new Formation(null, 5,"TSSR","Technicien superieur systeme et reseau");
+		Formation f2 = new Formation(null, 6,"AR","Administrateur reseau");
+		Formation f3 = new Formation(null, 7,"ESI","Expert en systemes d'information");
+		Formation f4 = new Formation(null, 6,"CEA","Concepteur developpeur d'application");
+		Formation f5 = new Formation(null, 5,"BTSS LAM","Solutions logicielles et applications métier");
+		Formation f6 = new Formation(null, 7,"IA","Ingenieur affaire");
+		Formation f7 = new Formation(null, 6,"RCM","Responsable Commercial et marketing");
 		
 		formationRepo.save(f1);
 		formationRepo.save(f2);
 		formationRepo.save(f3);
 		formationRepo.save(f4);
-
 		formationRepo.save(f5);
 		formationRepo.save(f6);
 		formationRepo.save(f7);

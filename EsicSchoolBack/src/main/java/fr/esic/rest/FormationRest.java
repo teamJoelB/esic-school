@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.esic.entities.Formation;
-import fr.esic.entities.Qcm;
 import fr.esic.repository.FormationRepository;
 
 @RestController
