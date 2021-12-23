@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 
 import fr.esic.entities.Formation;
 import fr.esic.entities.Mail;
+import fr.esic.entities.Qcm;
 import fr.esic.entities.Utilisateur;
 import fr.esic.entities.Visiteur;
 import fr.esic.entities.enums.Role;
@@ -101,7 +102,7 @@ public class UtilisateurRest {
 	
 	
 	//ajout des pdf de l'utilisateur
-	@PutMapping("pdf/{id}")
+	@PutMapping("inscription/pdf/{id}")
 	public ResponseEntity<Utilisateur> insertPDF(@PathVariable Long id, @RequestBody Utilisateur utilisateurDetails) throws ResourceNotFoundException {	
 		Utilisateur u = userRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Formation avec ID : " + id + " non trouvée"));
 		u.setNomPieceid(utilisateurDetails.getNomPieceid());
@@ -120,6 +121,34 @@ public class UtilisateurRest {
 	    return ResponseEntity.ok(uUpdated);
 	}
 	
+	@PostMapping("inscription/information")
+	public Utilisateur createUser (@RequestBody Utilisateur u) {
+		userRepo.save(u);
+		return u;
+	}
 	
+	/*
+	//ajout des info de l'utilisateur lors de l'inscription a une formation
+	@PutMapping("qcm/{id}")
+	public ResponseEntity<Utilisateur> modifQcm(@PathVariable Long id, @RequestBody Utilisateur userDetails) throws ResourceNotFoundException {
+		Optional<Qcm> b = userRepo.findById(id);
+		if(b.isPresent()) {
+			Qcm q = qcmRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Formation avec Qcm : " + id + " non trouvée"));
+			q.setFormation(qcmDetails.getFormation());
+			q.setP1(qcmDetails.getP1());
+			q.setP2(qcmDetails.getP2());
+			q.setP3(qcmDetails.getP3());
+			q.setP4(qcmDetails.getP4());
+			q.setTxt(qcmDetails.getTxt());
+			q.setReponse(qcmDetails.getReponse());
+			final Qcm qUpdated = qcmRepo.save(q);
+		    return ResponseEntity.ok(qUpdated);
+		}else {
+			System.err.println("QCM non trouvé");
+			return null;
+		}	
+		
+	}	
+	*/
 	
 }

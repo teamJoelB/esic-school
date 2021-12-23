@@ -61,26 +61,11 @@ public class EsicSchoolBackApplication implements CommandLineRunner {
 		formationRepo.save(f4);
 		formationRepo.save(f5);
 		formationRepo.save(f6);
-
-		/*
-		Utilisateur u1 = new Utilisateur(Role.CANDIDAT, null, "chameau@yahoo.fr", "lama", "Sapin", "Noël", null, false, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, 0, null, null, null, null, false, null, null, null, false, null, null, false, null, null, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, false, 0, false, null, null, 0, null, null, 0, null, false, null, null, null, null, null, null, null, false, null, null, null, null, null, null, null, null, null, null);
-		Utilisateur u2 = new Utilisateur(Role.CANDIDAT, null, "burtznicolas@yahoo.fr", "banane", "Burtz", "Nicolas", null, false, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, 0, null, null, null, null, false, null, null, null, false, null, null, false, null, null, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, false, 0, false, null, null, 0, null, null, 0, null, false, null, null, null, null, null, null, null, false, null, null, null, null, null, null, null, null, null, null);
-
-		*/
-		/*
-		Utilisateur u3 = new Utilisateur(null, null, "0", null, "burtznicolas@yahoo.fr", null, null, false, null, null,
-				null, null, 0, null, null, null, null, null, null, null, null, null, null, 0, null, null, null, null,
-				false, null, null, null, false, null, null, false, null, null, null, null, null, null, 0, null, null,
-				null, null, null, null, null, null, null, null, false, 0, false, null, null, 0, null, null, 0, null,
-				false, null, null, null, null, null, null, null, false, null, null, null, null, null, null, null, null,
-				null, null);
-		userRepo.save(u3);
-		System.out.println(u3);*/
 		
 		//Utilisateur u1 = new Utilisateur(Role.CANDIDAT, null, "juliette.pims@gmail.com", "chameau", "Lama", "Sté", 0, null, true);
 		Utilisateur u1 = new Utilisateur(Role.CANDIDAT, null, "juliette.pims@gmail.com", "chameau", "Lama", "Sté", 0, null, true);
 		Utilisateur u2 = new Utilisateur(Role.CONSEILLER_DE_FORMATION, null, "faux@gmail.com", "sapin", "Con", "Nard",2, null, true);
-		//userRepo.save(u1);
+		userRepo.save(u1);
 		userRepo.save(u2);
 		 
 
@@ -103,10 +88,10 @@ public class EsicSchoolBackApplication implements CommandLineRunner {
 		qcmRepo.save(q7);
 		qcmRepo.save(q8);
 		qcmRepo.save(q9);
-		/*
+		
 		Rdv r1 = new Rdv(null, new Date(), "entretien test 785", u2, u1, "lien@teams", "Ceci est un message additionnel.", false);
 		rdvRepo.save(r1);
-		System.out.println(u2);*/
+		System.out.println(u2);
 		
 		String pattern = "yyyy-MM-dd";
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
@@ -119,8 +104,8 @@ public class EsicSchoolBackApplication implements CommandLineRunner {
 		Session s5 = new Session(null,"Session du 18/09/2022 au 15/06/2023 - RCM");
 		Session s6 = new Session(null,"Session du 25/09/2022 au 15/06/2023 - AR");
 		Session s7 = new Session(null,"Session du 22/09/2022 au 15/05/2023 - CEA");
-		
-		
+		Session s8 = new Session(null,"___________________________________________________");
+				
 		sessionRepo.save(s1);
 		sessionRepo.save(s2);
 		sessionRepo.save(s3);
@@ -128,7 +113,7 @@ public class EsicSchoolBackApplication implements CommandLineRunner {
 		sessionRepo.save(s5);
 		sessionRepo.save(s6);
 		sessionRepo.save(s7);
-		
+		sessionRepo.save(s8);
 		
 	}
 }
