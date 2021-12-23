@@ -1,6 +1,5 @@
 package fr.esic.entities;
 
-import java.io.File;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -14,6 +13,7 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
 import fr.esic.entities.enums.Langue;
 import fr.esic.entities.enums.NiveauLangue;
+import fr.esic.entities.enums.Parcours;
 import fr.esic.entities.enums.Permis;
 import fr.esic.entities.enums.Role;
 import lombok.AllArgsConstructor;
@@ -37,11 +37,12 @@ public class Utilisateur {
 	private int avancementInscrit;  //-1 compte non actif 0 juste un compte 1 postule 2 piece valide 3 attente test 4 test passé attente result 5 inscrit
 	@ManyToOne
 	private Formation formation;
+	private String parcours;
 	
 	// ATTRIBUTS PROPRES AU CANDIDAT
 	private boolean actif;
 	private String nomNaissance;
-	private boolean civ;
+	private Boolean civ;
 	@CreationTimestamp
 	private Date dateCandidature;
 	
@@ -71,16 +72,16 @@ public class Utilisateur {
 	private String telPortableRepresentant;
 	private String emailRepresentant;
 	
-	private boolean handicap;
+	private Boolean handicap;
 	private String nomOrganisme;
 	private String coordOrganisme;
 	private String besoinParticulier;
 	
-	private boolean poleEmploi;
+	private Boolean poleEmploi;
 	private String identifiantPoleEmploi;
 	@Temporal(TemporalType.DATE)
 	private Date inscriptionPoleEmploi;
-	private boolean missionLocal;
+	private Boolean missionLocal;
 	private String coordMissionLocal;
 	private String nomConseillerMissionLocal;
 	
@@ -90,8 +91,13 @@ public class Utilisateur {
 	private String diplome3;
 	private double dureeExperience;  // en année genre 1.5 , voir s'il y a pas moyen de faire autrement
 	
-	private NiveauLangue  niveauFrancais;
-	private NiveauLangue  niveauAnglais;
+	private String niveauFrancais;
+	private String niveauAnglais;
+	
+	private String langueautre1;
+	private String niveauLangue1;
+	 
+	
 	
 	private Langue langue1;
 	private NiveauLangue niveau1;
@@ -102,10 +108,10 @@ public class Utilisateur {
 	private Langue langue4;
 	private NiveauLangue niveau4;
 	
-	private boolean contactEntreprise;
+	private Boolean contactEntreprise;
 	private int nombreContactEntreprise;
 	
-	private boolean trouveEntreprise;  // 
+	private Boolean trouveEntreprise;  // 
 	private String nomEntreprise;
 	//private Adresse adresseSiegeSocial;
 	private String adresseSiegeSocial;
@@ -115,7 +121,7 @@ public class Utilisateur {
 	private String adresseEntreprise;
 	private int codePostalEntreprise;
 	private String VilleEntreprise;
-	private boolean contratSigne;
+	private Boolean contratSigne;
 	@Temporal(TemporalType.DATE)
 	private Date dateDemarrageContrat;
 	private String nomContact;
@@ -123,8 +129,8 @@ public class Utilisateur {
 	private String fonctionContact;
 	private String telContact;
 	private String mailContact;
-	private Permis permis;
-	private boolean vehicule;
+	private String permis;
+	private Boolean vehicule;
 	private String connaissanceEsic;
 	
 	private String question1;
