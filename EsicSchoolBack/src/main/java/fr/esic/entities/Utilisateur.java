@@ -7,6 +7,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
@@ -31,8 +33,13 @@ public class Utilisateur {
 	private String nomUsage;
 	private String prenom;
 	
-	// ATTRIBUTS PROPRES AU CANDIDAT
+	//ATTRIBUTS PROPRES A L AVANCEMENT INSCRIPTION
+	private int avancementInscrit;  // 0 juste un compte 1 postule 2 piece valide 3 attente test 4 test passé attente result 5 inscrit
+	@ManyToOne
+	private Formation formation;
 	
+	// ATTRIBUTS PROPRES AU CANDIDAT
+	private boolean actif;
 	private String nomNaissance;
 	private boolean civ;
 	@CreationTimestamp
@@ -131,7 +138,35 @@ public class Utilisateur {
 	
 	private String commentaire;
 	
+	private String nomPieceid;
+	@Lob
+	private byte[] Pieceid;
 	private String nomCv;
-	private File cv;
-		
+	@Lob
+	private byte[] cv;
+	private String nomlm;
+	@Lob
+	private byte[] lm;
+	private String nomddo;
+	@Lob
+	private byte[] ddo;
+	private String nomrn;
+	@Lob
+	private byte[] rn;
+	private String nomhandi;
+	@Lob
+	private byte[] handi;
+	
+	public Utilisateur(Role role, Long id, String mail, String mdp, String nomUsage, String prenom, int avancementInscrit, Formation formation, boolean actif) {
+		super();
+		this.role = role;
+		this.id = id;
+		this.mail = mail;
+		this.mdp = mdp;
+		this.nomUsage = nomUsage;
+		this.prenom = prenom;
+		this.avancementInscrit = avancementInscrit;
+		this.formation = formation;
+		this.actif = actif;
+	}
 }

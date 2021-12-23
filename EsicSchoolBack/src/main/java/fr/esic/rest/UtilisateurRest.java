@@ -8,8 +8,11 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.http.ResponseEntity;
 
 import fr.esic.entities.Mail;
 import fr.esic.entities.Utilisateur;
@@ -27,7 +30,7 @@ public class UtilisateurRest {
 	
 	// Vérifier les login et mdp pour se connecter
 	@PostMapping("connexion")
-	public Utilisateur connect(@RequestBody Utilisateur p) {
+	public Optional<Utilisateur> connect(@RequestBody Utilisateur p) {
 		return userRepo.getByLoginAndPassword(p.getMail(), p.getMdp());
 	}
 	
@@ -35,6 +38,7 @@ public class UtilisateurRest {
 	@PostMapping("inscription")
 	public Utilisateur createUtilisateur(@RequestBody Utilisateur u) {
 		u.setRole(Role.CANDIDAT);
+		u.setActif(true);
 		userRepo.save(u);
 		int tailleCode = 6;
 		String code = MailService.getRandomStr(tailleCode);
@@ -58,10 +62,13 @@ public class UtilisateurRest {
 		return userRepo.findById(id);
 	}
 	
-	// Suprimer un utilisateur suivant son mail (fonctionnalité Administrateur)
-	@DeleteMapping("admin/utilisateurs/{id}")
-	public void deleteUtilisateur(@PathVariable Long id){
-		userRepo.deleteById(id);
+	// Désactiver un utilisateur suivant son id au lieu de la supprimer
+	@PutMapping("utilisateur/{id}")
+	public ResponseEntity<Utilisateur> desactiveUtilisateur(@PathVariable Long id) throws ResourceNotFoundException {
+		Utilisateur u = userRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Utilisateur avec ID : " + id + " non trouvé"));
+		u.setActif(false);
+		final Utilisateur uUpdated = userRepo.save(u);
+	    return ResponseEntity.ok(uUpdated);
 	}
 	
 	//Afficher tous les candidats (visibles par tout le monde sauf les candidats)
@@ -76,5 +83,12 @@ public class UtilisateurRest {
 		return userRepo.findAllResponsable();
 	}
 	
-
+	@PutMapping("image/{id}")
+	public Utilisateur setImageProduit(@RequestBody byte[] img,@RequestBody String nom, @PathVariable Long id) {
+		System.out.println("requête lancé");
+		userRepo.findById(id).get().setCv(img);
+		System.out.println("image modifiée");
+		return userRepo.save(userRepo.findById(id).get());
+	}
+	
 }

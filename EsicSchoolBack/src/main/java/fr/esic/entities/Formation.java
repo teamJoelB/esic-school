@@ -14,5 +14,6 @@ public class Formation {
 	@Id @GeneratedValue
 	private Long id;
 	private int nivCertif; //private String niveau certification;
+	private String intitule;
 
 }
