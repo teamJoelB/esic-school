@@ -157,6 +157,9 @@ public class Utilisateur {
 	@Lob
 	private byte[] handi;
 	
+	
+	
+	
 	public Utilisateur(Role role, Long id, String mail, String mdp, String nomUsage, String prenom, int avancementInscrit, Formation formation, boolean actif) {
 		super();
 		this.role = role;
@@ -168,5 +171,24 @@ public class Utilisateur {
 		this.avancementInscrit = avancementInscrit;
 		this.formation = formation;
 		this.actif = actif;
+	}
+
+
+
+
+	public Utilisateur(String nomPieceid, byte[] pieceid, String nomCv, byte[] cv, String nomlm, byte[] lm,
+			String nomddo, String nomrn, byte[] rn, String nomhandi, byte[] handi) {
+		super();
+		this.nomPieceid = nomPieceid;
+		Pieceid = pieceid;
+		this.nomCv = nomCv;
+		this.cv = cv;
+		this.nomlm = nomlm;
+		this.lm = lm;
+		this.nomddo = nomddo;
+		this.nomrn = nomrn;
+		this.rn = rn;
+		this.nomhandi = nomhandi;
+		this.handi = handi;
 	}
 }
