@@ -78,6 +78,8 @@ public class EsicSchoolBackApplication implements CommandLineRunner {
 //		Utilisateur u2 = new Utilisateur(Role.CONSEILLER_DE_FORMATION, null, "faux@gmail.com", "sapin", "Con", "Nard",2, null, true);
 		userRepo.save(u1);
 		userRepo.save(u2);
+		Utilisateur admin = new Utilisateur(Role.ADMINISTRATEUR, null, "lama@mail.fr", "mdp", "Némar", "Jean", 0, f6, false);
+		userRepo.save(admin);
 		System.out.println(u2);
 		/*
 		Mail m1 = new Mail(null, "Confirmation de compte","hello :)","burtznicolas@yahoo.fr");
