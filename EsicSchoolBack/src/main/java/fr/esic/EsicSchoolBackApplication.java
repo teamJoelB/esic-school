@@ -79,7 +79,7 @@ public class EsicSchoolBackApplication implements CommandLineRunner {
 		//Utilisateur u1 = new Utilisateur(Role.CANDIDAT, null, "juliette.pims@gmail.com", "chameau", "Lama", "Sté", 0, null, true);
 		Utilisateur u1 = new Utilisateur(Role.CANDIDAT, null, "juliette.pims@gmail.com", "chameau", "Lama", "Sté", 0, null, true);
 		Utilisateur u2 = new Utilisateur(Role.CONSEILLER_DE_FORMATION, null, "faux@gmail.com", "sapin", "Con", "Nard",2, null, true);
-		//userRepo.save(u1);
+		userRepo.save(u1);
 		userRepo.save(u2);
 		 
 
