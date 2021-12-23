@@ -15,11 +15,9 @@ import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
 
 import fr.esic.entities.Formation;
-import fr.esic.entities.Mail;
 import fr.esic.entities.Utilisateur;
 import fr.esic.entities.Visiteur;
 import fr.esic.entities.enums.Role;
-import fr.esic.repository.MailRepository;
 import fr.esic.repository.UtilisateurRepository;
 import fr.esic.repository.VisiteurRepository;
 import fr.esic.services.MailService;
@@ -31,8 +29,6 @@ public class UtilisateurRest {
 
 	@Autowired
 	UtilisateurRepository userRepo;
-	@Autowired
-	MailRepository mailRepo;
 	@Autowired
 	VisiteurRepository visitRepo;
 	
@@ -64,6 +60,30 @@ public class UtilisateurRest {
 		final Visiteur vUpdated = visitRepo.save(vBd);
 	    return ResponseEntity.ok(vUpdated);
 	}
+	
+	// Fenêtre pour saisir @mail pour obtenir un mdp temporaire
+	@PostMapping("recup_mdp/mail")
+	public void saisirMail(@RequestBody Visiteur v) {
+		
+	}
+	/*
+	// Envoi d'un mdp temporaire
+	@PostMapping("recup_mdp")
+	public void recuperationMdp(@RequestBody String mail) {
+		Optional<Utilisateur> user = userRepo.findByMail(mail);
+		int tailleMdp = 8;
+		String mdp = MailService.getRandomStr(tailleMdp);
+		String objet = "Récupération mot de passe - Essic School";
+		String message = "Bonjour, \n\nVous avez effectué une demande de réinitialisation "
+				+ "de mot de passe pour accéder à Esic School. Vous trouverez ci-dessous votre "
+				+ "mot de passe temporaire :\n\t" + mdp + "\nSi vous n'êtes pas l'initiateur "
+				+ "de cette demande, veuillez ignorer ce message.\n"
+				+ "\nCordialement\n\n\t Esic School";
+		u.setMdp(mdp);
+		userRepo.save(u);
+		MailService.sendMail(u.getMail(), objet, message);
+		return u;
+	}*/
 	
 	// Afficher tous les utilisateurs (fonctionnalité Administrateur)
 	@GetMapping("admin/utilisateurs")
