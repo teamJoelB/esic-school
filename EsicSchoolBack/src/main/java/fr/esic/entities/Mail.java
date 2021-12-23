@@ -17,4 +17,5 @@ public class Mail {
 	@ManyToOne
 	private Utilisateur destinataire;
 	private String message;
+	private String codeVerif;
 }
