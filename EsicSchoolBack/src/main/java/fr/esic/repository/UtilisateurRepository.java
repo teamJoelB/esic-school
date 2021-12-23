@@ -21,6 +21,9 @@ public interface UtilisateurRepository extends CrudRepository<Utilisateur, Long>
 
 	@Query(value = "DELETE FROM Utilisateur p WHERE p.mail= ?1")
 	public void deleteByMail(String mail);
+
+	@Query(value = "DELETE FROM Utilisateur p WHERE p.mail= ?1")
+	public Utilisateur modifyUser(Utilisateur p);
 	
 	
 }

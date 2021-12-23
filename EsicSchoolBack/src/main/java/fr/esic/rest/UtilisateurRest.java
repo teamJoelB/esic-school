@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import fr.esic.entities.Utilisateur;
 import fr.esic.repository.UtilisateurRepository;
+
 
 @RestController
 
@@ -64,5 +66,20 @@ public class UtilisateurRest {
 		return userRepo.findAllResponsable();
 	}
 	
+	//Modifier un utilisateur
+	@PostMapping("modif_utilisateur")
+	public Utilisateur modifyUtilisateur(@RequestBody Utilisateur p) {
+	return userRepo.modifyUser(p);
+	}
+	
+	
+	// ????
+	@RequestMapping("/user/{id}")
+	public Utilisateur modifUser(@PathVariable Long id, @RequestBody Utilisateur user){
+		user.setId(id);
+		return userRepo.save(user);
+	}
+	
+
 
 }
