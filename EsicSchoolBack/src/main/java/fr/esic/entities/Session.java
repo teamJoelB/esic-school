@@ -1,6 +1,8 @@
 package fr.esic.entities;
 
+import java.net.Authenticator;
 import java.sql.Date;
+import java.util.Properties;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,6 +21,10 @@ public class Session {
 	@Id @GeneratedValue
 	private Long id;
 	private String session;
+	public static Session getInstance(Properties props, Authenticator authenticator) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }

@@ -1,6 +1,7 @@
 package fr.esic.rest;
 
 import java.util.Properties;
+<<<<<<< HEAD
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -9,6 +10,9 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+=======
+
+>>>>>>> branch 'master' of https://github.com/teamJoelB/esic-school.git
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
