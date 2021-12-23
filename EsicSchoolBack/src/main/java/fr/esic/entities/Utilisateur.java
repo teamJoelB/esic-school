@@ -133,7 +133,7 @@ public class Utilisateur {
 	private String commentaire;
 	
 	private String nomCv;
-	private File cv;
+	private byte[] cv;
 	
 	
 	
