@@ -45,9 +45,6 @@ public class UtilisateurRest {
 	@PostMapping("verifmail/{id}")
 	public ResponseEntity<Visiteur> verifUtilisateur(@PathVariable Long id, @RequestBody Visiteur v) throws ResourceNotFoundException {
 		Visiteur vBd = visitRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Visiteur avec ID : " + id + " non trouvé"));
-		boolean codeIsOk = false;
-		System.out.println(vBd.getCode());
-		System.out.println(v.getTentative());
 		int tentative = v.getTentative();
 		tentative++;
 		if (vBd.getCode().equals(v.getCode()) && tentative < 4) {
@@ -61,10 +58,8 @@ public class UtilisateurRest {
 			u.setAvancementInscrit(0);
 			userRepo.save(u);
 			vBd.setOk(true);
-			System.out.print("REUSSI");
 		} else {
 			vBd.setTentative(tentative);
-			System.out.print("FAUX");
 		}
 		final Visiteur vUpdated = visitRepo.save(vBd);
 	    return ResponseEntity.ok(vUpdated);
