@@ -21,7 +21,7 @@ public class Qcm {
 	private String p3;
 	private String p4;
 	private int reponse;
-	private String formation; // a faire en clef etragnere apres les premier tests
-	
+	private String formation; // a faire en clef etragnere apres les premiers tests si possible
+
 	
 }

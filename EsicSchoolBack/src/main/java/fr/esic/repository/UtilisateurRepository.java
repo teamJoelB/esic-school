@@ -17,6 +17,4 @@ public interface UtilisateurRepository extends CrudRepository<Utilisateur, Long>
 
 	@Query(value = "SELECT p FROM Utilisateur p WHERE p.role = RESPONSABLE_PEDAGOGIQUE")
 	public Iterable<Utilisateur> findAllResponsable();
-	
-	
 }

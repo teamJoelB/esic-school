@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
 
+import fr.esic.entities.Formation;
 import fr.esic.entities.Mail;
 import fr.esic.entities.Utilisateur;
 import fr.esic.entities.Visiteur;
@@ -103,12 +104,27 @@ public class UtilisateurRest {
 		return userRepo.findAllResponsable();
 	}
 	
-	@PutMapping("image/{id}")
-	public Utilisateur setImageProduit(@RequestBody byte[] img,@RequestBody String nom, @PathVariable Long id) {
-		System.out.println("requête lancé");
-		userRepo.findById(id).get().setCv(img);
-		System.out.println("image modifiée");
-		return userRepo.save(userRepo.findById(id).get());
+	
+	//ajout des pdf de l'utilisateur
+	@PutMapping("pdf/{id}")
+	public ResponseEntity<Utilisateur> insertPDF(@PathVariable Long id, @RequestBody Utilisateur utilisateurDetails) throws ResourceNotFoundException {	
+		Utilisateur u = userRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Formation avec ID : " + id + " non trouvée"));
+		u.setNomPieceid(utilisateurDetails.getNomPieceid());
+		u.setPieceid(utilisateurDetails.getPieceid());
+		u.setNomCv(utilisateurDetails.getNomCv());
+		u.setCv(utilisateurDetails.getCv());	
+		u.setNomlm(utilisateurDetails.getNomlm());
+		u.setLm(utilisateurDetails.getLm());		
+		u.setNomddo(utilisateurDetails.getNomddo());
+		u.setDdo(utilisateurDetails.getDdo());		
+		u.setNomrn(utilisateurDetails.getNomrn());
+		u.setRn(utilisateurDetails.getRn());
+		u.setNomhandi(utilisateurDetails.getNomhandi());
+		u.setHandi(utilisateurDetails.getHandi());
+		final Utilisateur uUpdated = userRepo.save(u);
+	    return ResponseEntity.ok(uUpdated);
 	}
+	
+	
 	
 }
