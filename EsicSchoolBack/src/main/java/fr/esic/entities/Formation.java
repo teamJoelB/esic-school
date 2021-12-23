@@ -15,5 +15,6 @@ public class Formation {
 	private Long id;
 	private int nivCertif; //private String niveau certification;
 	private String intitule;
+	private String nomComplet;
 
 }

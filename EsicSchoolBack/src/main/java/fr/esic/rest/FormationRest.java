@@ -1,16 +1,17 @@
 package fr.esic.rest;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.esic.entities.Formation;
@@ -27,22 +28,32 @@ public class FormationRest {
 	public  Iterable<Formation> getAllFormation(){
 		return formationRepo.findAll();
 	}
-	
-	/*@DeleteMapping("formation")
-	public Map<String, Boolean> deleteFormation(@PathVariable(value = "id") Long idformation){
-	  throws ResourceNotFoundException {
-	   Formation formation = formationRepo.findById(idformation)
-	      .orElseThrow(() -> new ResourceNotFoundException("Aucune formation trouvée pour l'id :: " + idformation));
-
-	    //formationRepo.delete(formation);
-	    Map<String, Boolean> response = new HashMap<>();
-	    response.put("deleted", Boolean.TRUE);
-	    return response;
-	}*/
-	
+		
 	@PostMapping("formation")
 	public Formation createFormation(@RequestBody Formation f) {
 		return formationRepo.save(f);
 	}
+	
+	@GetMapping("formation/{intitule}")
+	public Optional<Formation> findByIntitule (@PathVariable String intitule){
+		return formationRepo.findByIntitule(intitule);
+	}
+	
+	@DeleteMapping("formation/{intitule}")
+	public boolean deleteByIntitule(@PathVariable String intitule) {
+		Optional<Formation> f = formationRepo.findByIntitule(intitule);
+		if(f.isPresent()) {
+			formationRepo.deleteById(f.get().getId());
+			return true;
+		}
+		else {
+			return false;
+		}	
+	}
+	
+	
+	
+	
+	
 	
 }

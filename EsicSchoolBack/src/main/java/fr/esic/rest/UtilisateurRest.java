@@ -18,7 +18,6 @@ import fr.esic.repository.UtilisateurRepository;
 
 
 @RestController
-
 @CrossOrigin("*")
 public class UtilisateurRest {
 
@@ -28,6 +27,7 @@ public class UtilisateurRest {
 	// Vérifier les login et mdp pour se connecter
 	@PostMapping("connexion")
 	public Optional<Utilisateur> connect(@RequestBody Utilisateur p) {
+		
 		return userRepo.getByLoginAndPassword(p.getMail(), p.getMdp());
 	}
 	
