@@ -3,8 +3,8 @@ package fr.esic.entities;
 import java.util.Date;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import lombok.AllArgsConstructor;
@@ -19,9 +19,9 @@ public class Rdv {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
 	private String objet;
-	@OneToOne
+	@ManyToOne
 	private Utilisateur emetteur;
-	@OneToOne
+	@ManyToOne
 	private Utilisateur destinataire;
 	private String lien;
 	private String message;

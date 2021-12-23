@@ -1,25 +1,27 @@
 package fr.esic.entities;
 
-import java.sql.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-import fr.esic.entities.enums.Langue;
-import fr.esic.entities.enums.NiveauLangue;
-import fr.esic.entities.enums.Permis;
-import fr.esic.entities.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor @AllArgsConstructor @Data
 @Entity
-public class Test {
+
+public class Qcm {
+	
 	@Id @GeneratedValue
 	private Long id;
-	private int score;
-	//private Date temps;	
-
+	private String txt;
+	private String p1;
+	private String p2;
+	private String p3;
+	private String p4;
+	private int reponse;
+	private String formation; // a faire en clef etragnere apres les premier tests
+	
+	
 }
