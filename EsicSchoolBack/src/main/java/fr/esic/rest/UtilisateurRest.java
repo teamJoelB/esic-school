@@ -144,8 +144,6 @@ public class UtilisateurRest {
 		final Utilisateur uUpdated = userRepo.save(u);
 	    return ResponseEntity.ok(uUpdated);
 	}
-<<<<<<< HEAD
-=======
 	
 	// pour test only
 	@PostMapping("inscription/information")
