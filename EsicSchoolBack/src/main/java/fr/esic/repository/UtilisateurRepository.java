@@ -17,7 +17,6 @@ public interface UtilisateurRepository extends CrudRepository<Utilisateur, Long>
 
 	@Query(value = "SELECT p FROM Utilisateur p WHERE p.role = RESPONSABLE_PEDAGOGIQUE")
 	public Iterable<Utilisateur> findAllResponsable();
-<<<<<<< HEAD
 
 //	@Query(value = "UPDATE Utilisateur p SET p.?1 = p.?2 WHERE p.mail = ?3")
 //	public Utilisateur modifyCandidat(String data, String value, String mail);
@@ -29,6 +28,4 @@ public interface UtilisateurRepository extends CrudRepository<Utilisateur, Long>
 	public Utilisateur modifyUser(Utilisateur p);
 	
 	
-=======
->>>>>>> branch 'master' of https://github.com/teamJoelB/esic-school.git
 }

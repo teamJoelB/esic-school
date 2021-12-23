@@ -101,7 +101,6 @@ public class UtilisateurRest {
 		return userRepo.findAllResponsable();
 	}
 	
-<<<<<<< HEAD
 
 	//Modifier un utilisateur
 	@PostMapping("modif_utilisateur")
@@ -110,9 +109,9 @@ public class UtilisateurRest {
 	}
 	
 	
-	// ????
+	// ??????????????????????????????what ?
 	@RequestMapping("/user/{id}")
-	public Utilisateur modifUser(@PathVariable Long id, @RequestBody Utilisateur user){
+	public Utilisateur modifyUtilisateurById(@PathVariable Long id, @RequestBody Utilisateur user){
 		user.setId(id);
 		return userRepo.save(user);
 	}
@@ -123,8 +122,7 @@ public class UtilisateurRest {
 		System.out.println("requête lancé");
 		userRepo.findById(id).get().setCv(img);
 		System.out.println("image modifiée");
-		return userRepo.save(userRepo.findById(id).get());
-=======
+		return userRepo.save(userRepo.findById(id).get());}
 	
 	//ajout des pdf de l'utilisateur
 	@PutMapping("pdf/{id}")
@@ -144,12 +142,5 @@ public class UtilisateurRest {
 		u.setHandi(utilisateurDetails.getHandi());
 		final Utilisateur uUpdated = userRepo.save(u);
 	    return ResponseEntity.ok(uUpdated);
->>>>>>> branch 'master' of https://github.com/teamJoelB/esic-school.git
 	}
-<<<<<<< HEAD
-=======
-	
-	
-	
->>>>>>> branch 'master' of https://github.com/teamJoelB/esic-school.git
 }

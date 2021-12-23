@@ -8,23 +8,16 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import fr.esic.entities.Formation;
 import fr.esic.entities.Qcm;
-<<<<<<< HEAD
-=======
-
 import fr.esic.entities.Rdv;
 import fr.esic.entities.Session;
->>>>>>> branch 'master' of https://github.com/teamJoelB/esic-school.git
 import fr.esic.repository.FormationRepository;
 import fr.esic.repository.MailRepository;
 import fr.esic.repository.QcmRepository;
 import fr.esic.repository.RdvRepository;
 import fr.esic.repository.SessionRepository;
 import fr.esic.repository.UtilisateurRepository;
-<<<<<<< HEAD
-=======
 import fr.esic.rest.MailRest;
 import fr.esic.services.MailService;
->>>>>>> branch 'master' of https://github.com/teamJoelB/esic-school.git
 import fr.esic.entities.Utilisateur;
 
 
@@ -62,7 +55,7 @@ public class EsicSchoolBackApplication implements CommandLineRunner {
 		formationRepo.save(f1);
 		formationRepo.save(f2);
 
-		Utilisateur u3 = new Utilisateur(null, null, "0" ,null, "burtznicolas@yahoo.fr", null, 0, null, null, false, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, 0, null, null, null, null, false, null, null, null, false, null, null, false, null, null, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, false, 0, false, null, null, 0, null, null, 0, null, false, null, null, null, null, null, null, null, false, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+		Utilisateur u3 = new Utilisateur(null, null, "0" ,null, "burtznicolas@yahoo.fr", null, 0, null, false, null, false, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, 0, null, null, null, null, false, null, null, null, false, null, null, false, null, null, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, false, 0, false, null, null, 0, null, null, 0, null, false, null, null, null, null, null, null, null, false, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 	userRepo.save(u3);
 	System.out.println(u3);
 	
@@ -110,17 +103,15 @@ public class EsicSchoolBackApplication implements CommandLineRunner {
 		Utilisateur u1 = new Utilisateur(Role.CANDIDAT, null, "juliette.pims@gmail.com", "chameau", "Lama", "Sté", 0, null);
 		Utilisateur u2 = new Utilisateur(Role.CONSEILLER_DE_FORMATION, null, "faux@gmail.com", "sapin", "Con", "Nard",2,null);
 		userRepo.save(u1);
-=======
 		System.out.println(u3);*/
 		
 		//Utilisateur u1 = new Utilisateur(Role.CANDIDAT, null, "juliette.pims@gmail.com", "chameau", "Lama", "Sté", 0, null, true);
 		Utilisateur u1 = new Utilisateur(Role.CANDIDAT, null, "juliette.pims@gmail.com", "chameau", "Lama", "Sté", 0, null, true);
 		Utilisateur u2 = new Utilisateur(Role.CONSEILLER_DE_FORMATION, null, "faux@gmail.com", "sapin", "Con", "Nard",2, null, true);
 		//userRepo.save(u1);
->>>>>>> branch 'master' of https://github.com/teamJoelB/esic-school.git
 		userRepo.save(u2);
 		System.out.println(u2);
-		
+		/*
 		Mail m1 = new Mail(null, "Confirmation de compte","hello :)","burtznicolas@yahoo.fr");
 		mailRepo.save(m1);
 		System.out.println(m1); 

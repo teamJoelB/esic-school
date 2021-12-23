@@ -11,19 +11,13 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-<<<<<<< HEAD
-=======
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
->>>>>>> branch 'master' of https://github.com/teamJoelB/esic-school.git
 import org.springframework.web.bind.annotation.RestController;
-<<<<<<< HEAD
-=======
 
 import fr.esic.entities.Mail;
 import fr.esic.entities.Utilisateur;
->>>>>>> branch 'master' of https://github.com/teamJoelB/esic-school.git
 import fr.esic.repository.MailRepository;
 import fr.esic.repository.UtilisateurRepository;
 
