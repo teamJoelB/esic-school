@@ -96,7 +96,7 @@ public class Utilisateur {
 	
 	private String langueautre1;
 	private String niveauLangue1;
-	
+	 
 	
 	
 	private Langue langue1;

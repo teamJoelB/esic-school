@@ -99,27 +99,34 @@ public class UtilisateurRest {
 	public Iterable<Utilisateur> getAllResponsable(){
 		return userRepo.findAllResponsable();
 	}
-	
-	
+		
 	//ajout des pdf de l'utilisateur
 	@PutMapping("inscription/pdf/{id}")
-	public ResponseEntity<Utilisateur> insertPDF(@PathVariable Long id, @RequestBody Utilisateur utilisateurDetails) throws ResourceNotFoundException {	
-		Utilisateur u = userRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Formation avec ID : " + id + " non trouvée"));
-		u.setNomPieceid(utilisateurDetails.getNomPieceid());
-		u.setPieceid(utilisateurDetails.getPieceid());
-		u.setNomCv(utilisateurDetails.getNomCv());
-		u.setCv(utilisateurDetails.getCv());	
-		u.setNomlm(utilisateurDetails.getNomlm());
-		u.setLm(utilisateurDetails.getLm());		
-		u.setNomddo(utilisateurDetails.getNomddo());
-		u.setDdo(utilisateurDetails.getDdo());		
-		u.setNomrn(utilisateurDetails.getNomrn());
-		u.setRn(utilisateurDetails.getRn());
-		u.setNomhandi(utilisateurDetails.getNomhandi());
-		u.setHandi(utilisateurDetails.getHandi());
-		final Utilisateur uUpdated = userRepo.save(u);
-	    return ResponseEntity.ok(uUpdated);
-	}
+	public ResponseEntity<Utilisateur> ajoutPdf(@PathVariable Long id, @RequestBody Utilisateur utilisateurDetails) throws ResourceNotFoundException {
+		Optional<Utilisateur> b = userRepo.findById(id);
+		if(b.isPresent()) {
+			Utilisateur u = userRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Formation avec Qcm : " + id + " non trouvée"));
+			u.setNomPieceid(utilisateurDetails.getNomPieceid());
+			u.setPieceid(utilisateurDetails.getPieceid());
+			u.setNomCv(utilisateurDetails.getNomCv());
+			u.setCv(utilisateurDetails.getCv());	
+			u.setNomlm(utilisateurDetails.getNomlm());
+			u.setLm(utilisateurDetails.getLm());		
+			u.setNomddo(utilisateurDetails.getNomddo());
+			u.setDdo(utilisateurDetails.getDdo());		
+			u.setNomrn(utilisateurDetails.getNomrn());
+			u.setRn(utilisateurDetails.getRn());
+			u.setNomhandi(utilisateurDetails.getNomhandi());
+			u.setHandi(utilisateurDetails.getHandi());
+			
+			final Utilisateur qUpdated = userRepo.save(u);
+		    return ResponseEntity.ok(qUpdated);
+		}else {
+			System.err.println("QCM non trouvé");
+			return null;
+		}	
+		
+	}	
 	
 	// pour test only
 	@PostMapping("inscription/information")
@@ -178,11 +185,9 @@ public class UtilisateurRest {
 			q.setDureeExperience(userDetails.getDureeExperience());
 			
 			//langues a mettre
-			/*q.setNiveauAnglais(userDetails.getNiveauAnglais());
 			q.setNiveauFrancais(userDetails.getNiveauFrancais());
-			q.setLangue1(userDetails.getLangue1());
-			q.setNiveau1(userDetails.getNiveau1());
-			*/
+			q.setNiveauAnglais(userDetails.getNiveauAnglais());
+					
 			
 			q.setContactEntreprise(userDetails.getContactEntreprise());
 			q.setNombreContactEntreprise(userDetails.getNombreContactEntreprise());
@@ -211,13 +216,7 @@ public class UtilisateurRest {
 			q.setQuestion5(userDetails.getQuestion5());
 			q.setQuestion6(userDetails.getQuestion6());
 			q.setCommentaire(userDetails.getCommentaire());
-			
-			
-			
-			
-			
-			
-			
+					
 			final Utilisateur qUpdated = userRepo.save(q);
 		    return ResponseEntity.ok(qUpdated);
 		}else {
