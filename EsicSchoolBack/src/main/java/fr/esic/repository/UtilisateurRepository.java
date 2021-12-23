@@ -20,9 +20,6 @@ public interface UtilisateurRepository extends CrudRepository<Utilisateur, Long>
 
 //	@Query(value = "UPDATE Utilisateur p SET p.?1 = p.?2 WHERE p.mail = ?3")
 //	public Utilisateur modifyCandidat(String data, String value, String mail);
-
-	@Query(value = "UPDATE Utilisateur u SET u.actif = false")
-	public void desactive();
 	
 	
 }
