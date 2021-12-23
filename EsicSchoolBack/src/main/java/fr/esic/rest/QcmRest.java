@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import antlr.collections.List;
 import fr.esic.entities.Qcm;
-import fr.esic.entities.enums.FormationListe;
 import fr.esic.repository.QcmRepository;
 import lombok.Delegate;
 
