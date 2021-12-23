@@ -200,9 +200,8 @@ public class UtilisateurRest {
 		}else {
 			System.err.println("QCM non trouvé");
 			return null;
-		}	
+		}}}	
 		
-	}	
 	
 	
 	
@@ -216,12 +215,4 @@ public class UtilisateurRest {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
->>>>>>> branch 'master' of https://github.com/teamJoelB/esic-school.git
-}
+
