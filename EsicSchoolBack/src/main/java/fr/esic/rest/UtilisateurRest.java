@@ -136,6 +136,7 @@ public class UtilisateurRest {
 		if(b.isPresent()) {
 			Utilisateur q = userRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Formation avec Qcm : " + id + " non trouvée"));
 			
+			q.setCiv(userDetails.getCiv());
 			q.setParcours(userDetails.getParcours());
 			q.setNomUsage(userDetails.getNomUsage());  //////////////////////////////////////////////
 			q.setPrenom(userDetails.getPrenom());   //////////////////////////////////////////////
@@ -150,9 +151,6 @@ public class UtilisateurRest {
 			q.setMail(userDetails.getMail());  //////////////////////////////////////////////
 			q.setNationalité(userDetails.getNationalité());
 			q.setNumSecuSocial(userDetails.getNumSecuSocial());
-			
-			
-			
 			q.setNomRepresentant(userDetails.getNomRepresentant());
 			q.setPrenomRepresentant(userDetails.getPrenomRepresentant());
 			q.setTypeRepresentant(userDetails.getTypeRepresentant());
@@ -163,7 +161,56 @@ public class UtilisateurRest {
 			q.setTelPortableRepresentant(userDetails.getTelPortableRepresentant());
 			q.setEmailRepresentant(userDetails.getEmailRepresentant());
 			q.setSituationActuelle(userDetails.getSituationActuelle());
-			//q.setHandicap(false)
+			q.setHandicap(userDetails.getHandicap());
+			q.setNomOrganisme(userDetails.getNomOrganisme());
+			q.setCoordOrganisme(userDetails.getCoordOrganisme());
+			q.setBesoinParticulier(userDetails.getBesoinParticulier());
+			q.setPoleEmploi(userDetails.getPoleEmploi());
+			q.setIdentifiantPoleEmploi(userDetails.getIdentifiantPoleEmploi());
+			q.setInscriptionPoleEmploi(userDetails.getInscriptionPoleEmploi());
+			q.setMissionLocal(userDetails.getMissionLocal());
+			q.setCoordMissionLocal(userDetails.getCoordMissionLocal());
+			q.setNomConseillerMissionLocal(userDetails.getNomConseillerMissionLocal());
+			q.setDerniereClasse(userDetails.getDerniereClasse());
+			q.setDiplome1(userDetails.getDiplome1());
+			q.setDiplome2(userDetails.getDiplome2());
+			q.setDiplome3(userDetails.getDiplome3());
+			q.setDureeExperience(userDetails.getDureeExperience());
+			
+			//langues a mettre
+			/*q.setNiveauAnglais(userDetails.getNiveauAnglais());
+			q.setNiveauFrancais(userDetails.getNiveauFrancais());
+			q.setLangue1(userDetails.getLangue1());
+			q.setNiveau1(userDetails.getNiveau1());
+			*/
+			
+			q.setContactEntreprise(userDetails.getContactEntreprise());
+			q.setNombreContactEntreprise(userDetails.getNombreContactEntreprise());
+			q.setTrouveEntreprise(userDetails.getTrouveEntreprise());
+			q.setNomEntreprise(userDetails.getNomEntreprise());
+			q.setAdresseSiegeSocial(userDetails.getAdresseSiegeSocial());
+			q.setCodePostalSiegeSocial(userDetails.getCodePostalSiegeSocial());
+			q.setVilleSiegeSocial(userDetails.getVilleSiegeSocial());
+			q.setAdresseEntreprise(userDetails.getAdresseEntreprise());
+			q.setCodePostalRepresentant(userDetails.getCodePostalEntreprise());
+			q.setVilleEntreprise(userDetails.getVilleEntreprise());
+			q.setContratSigne(userDetails.getContratSigne());
+			q.setDateDemarrageContrat(userDetails.getDateDemarrageContrat());
+			q.setNomContact(userDetails.getNomContact());
+			q.setPrenomContact(userDetails.getPrenomContact());
+			q.setFonctionContact(userDetails.getFonctionContact());
+			q.setTelContact(userDetails.getTelContact());
+			q.setMailContact(userDetails.getMailContact());
+			q.setPermis(userDetails.getPermis());
+			q.setVehicule(userDetails.getVehicule());
+			q.setConnaissanceEsic(userDetails.getConnaissanceEsic());
+			q.setQuestion1(userDetails.getQuestion1());
+			q.setQuestion2(userDetails.getQuestion2());
+			q.setQuestion3(userDetails.getQuestion3());
+			q.setQuestion4(userDetails.getQuestion4());
+			q.setQuestion5(userDetails.getQuestion5());
+			q.setQuestion6(userDetails.getQuestion6());
+			q.setCommentaire(userDetails.getCommentaire());
 			
 			
 			
