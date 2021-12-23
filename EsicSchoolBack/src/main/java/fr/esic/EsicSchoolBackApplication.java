@@ -53,7 +53,8 @@ public class EsicSchoolBackApplication implements CommandLineRunner {
 		Formation f4 = new Formation(null, 6,"CEA","Concepteur developpeur d'application");
 		Formation f5 = new Formation(null, 5,"BTSS LAM","Solutions logicielles et applications métier");
 		Formation f6 = new Formation(null, 7,"IA","Ingenieur affaire");
-	
+		
+		
 		formationRepo.save(f1);
 		formationRepo.save(f2);
 		formationRepo.save(f3);
@@ -111,7 +112,7 @@ public class EsicSchoolBackApplication implements CommandLineRunner {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		
 		
-		Session s1 = new Session(null,"Session du 12/02/2022 au 20/06/2022 - Administrateur reseau");
+		Session s1 = new Session(null,"Session du 12/02/2022 au 20/06/2022 - IA");
 		Session s2 = new Session(null,"Session du 15/02/2022 au 15/06/2022 - AR");
 		Session s3 = new Session(null,"Session du 18/09/2022 au 15/06/2023 - TSSR");
 		Session s4 = new Session(null,"Session du 18/09/2022 au 18/06/2024 - CEA");
