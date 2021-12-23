@@ -27,7 +27,7 @@ public class UtilisateurRest {
 	
 	// Vérifier les login et mdp pour se connecter
 	@PostMapping("connexion")
-	public Utilisateur connect(@RequestBody Utilisateur p) {
+	public Optional<Utilisateur> connect(@RequestBody Utilisateur p) {
 		return userRepo.getByLoginAndPassword(p.getMail(), p.getMdp());
 	}
 	
