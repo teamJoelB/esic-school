@@ -37,7 +37,7 @@ public class Utilisateur {
 	private int avancementInscrit;  //-1 compte non actif 0 juste un compte 1 postule 2 piece valide 3 attente test 4 test passé attente result 5 inscrit
 	@ManyToOne
 	private Formation formation;
-	private Parcours parcours;
+	private String parcours;
 	
 	// ATTRIBUTS PROPRES AU CANDIDAT
 	private boolean actif;
