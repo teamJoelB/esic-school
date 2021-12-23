@@ -1,4 +1,4 @@
-package fr.esic.rest;
+package fr.esic.services;
 
 import java.util.Properties;
 
@@ -11,32 +11,12 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+public class MailService {
 
-import fr.esic.entities.Mail;
-import fr.esic.entities.Utilisateur;
-import fr.esic.repository.MailRepository;
-import fr.esic.repository.UtilisateurRepository;
-
-@RestController
-
-@CrossOrigin("*")
-public class MailRest {
-
-	@Autowired
-	MailRepository mailRepo;
-	@Autowired
-	UtilisateurRepository userRepo;
+	private static String contactEcole = "studyroadsesic@gmail.com";
+	private static String mdpEcole = "esicschool6!";
 	
-	private String contactEcole = "studyroadsesic@gmail.com";
-	private String mdpEcole = "esicschool6!";
-	
-	public void sendMail(String destinataire, String objet, String contenu) {
+	public static void sendMail(String destinataire, String objet, String contenu) {
 		
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
@@ -61,4 +41,19 @@ public class MailRest {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	// Source : https://waytolearnx.com/2020/03/comment-generer-une-chaine-aleatoire-en-java.html
+	public static String getRandomStr(int n) {
+        //choisissez un caractére au hasard à partir de cette chaîne
+        String str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                    + "abcdefghijklmnopqrstuvxyz"; 
+  
+        StringBuilder s = new StringBuilder(n); 
+  
+        for (int i = 0; i < n; i++) { 
+            int index = (int)(str.length() * Math.random()); 
+            s.append(str.charAt(index)); 
+        } 
+        return s.toString(); 
+    }
 }

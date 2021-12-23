@@ -12,6 +12,8 @@ import fr.esic.entities.Rdv;
 import fr.esic.repository.FormationRepository;
 import fr.esic.repository.RdvRepository;
 import fr.esic.repository.UtilisateurRepository;
+import fr.esic.rest.MailRest;
+import fr.esic.services.MailService;
 import fr.esic.entities.Utilisateur;
 import fr.esic.entities.enums.Role;
 
@@ -68,6 +70,6 @@ public class EsicSchoolBackApplication implements CommandLineRunner {
 		userRepo.save(u2);
 		Rdv r1 = new Rdv(null, new Date(), "entretien test 785", u2, u1, "lien@teams", "Ceci est un message additionnel.", false);
 		rdvRepo.save(r1);
-		System.out.println(u2);
+		
 	}
 }

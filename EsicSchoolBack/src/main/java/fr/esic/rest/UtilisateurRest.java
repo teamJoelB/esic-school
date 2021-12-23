@@ -10,9 +10,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import fr.esic.entities.Mail;
 import fr.esic.entities.Utilisateur;
 import fr.esic.entities.enums.Role;
 import fr.esic.repository.UtilisateurRepository;
+import fr.esic.services.MailService;
 
 @RestController
 
@@ -30,10 +33,17 @@ public class UtilisateurRest {
 	
 	// Creer un nouvel utilisateur (inscription)
 	@PostMapping("inscription")
-	public Utilisateur createUtilisateur (@RequestBody Utilisateur i) {
-		i.setRole(Role.CANDIDAT);
-		userRepo.save(i);
-		return i;
+	public Utilisateur createUtilisateur(@RequestBody Utilisateur u) {
+		u.setRole(Role.CANDIDAT);
+		userRepo.save(u);
+		int tailleCode = 6;
+		String code = MailService.getRandomStr(tailleCode);
+		String objet = "Inscription Essic School";
+		String message = "Bonjour, \n\nVeuillez saisir le code ci-dessous pour finaliser votre inscription à Esic School :\n"
+				+ "\t" + code;
+		Mail m = new Mail(null, objet, u, message, code);
+		MailService.sendMail(u.getMail(), objet, message);
+		return u;
 	}
 	
 	// Afficher tous les utilisateurs (fonctionnalité Administrateur)
@@ -49,9 +59,9 @@ public class UtilisateurRest {
 	}
 	
 	// Suprimer un utilisateur suivant son mail (fonctionnalité Administrateur)
-	@DeleteMapping("admin/utilisateurs/{mail}")
-	public void deleteUtilisateur(@PathVariable String mail){
-		userRepo.deleteByMail(mail);
+	@DeleteMapping("admin/utilisateurs/{id}")
+	public void deleteUtilisateur(@PathVariable Long id){
+		userRepo.deleteById(id);
 	}
 	
 	//Afficher tous les candidats (visibles par tout le monde sauf les candidats)

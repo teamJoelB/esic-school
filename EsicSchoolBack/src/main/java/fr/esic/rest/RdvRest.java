@@ -60,7 +60,7 @@ public class RdvRest {
 		}
 	}
 	
-	//VERSION 1
+	// VERSION 1
 	/*
 	@PostMapping("admin/creation_rdv")
 	public Rdv creationRdv(@RequestBody Rdv r) {
@@ -76,8 +76,10 @@ public class RdvRest {
 				+ "\t" + r.getEmetteur().getPrenom() + " " + r.getEmetteur().getNomUsage();
 		sendMail(r.getDestinataire().getMail(), r.getObjet(), contenu);
 		return r;
-	}*/
+	}
+	*/
 	
+	// VERSION 2
 	@PostMapping("admin/{prenom}_{nomUsage}/creation_rdv")
 	public Rdv creationRdv(@RequestBody Rdv r, @PathVariable String prenom, @PathVariable String nomUsage) {
 		rdvRep.save(r);
@@ -114,11 +116,12 @@ public class RdvRest {
 		r.setValider(true);
 	}*/
 	
+	/*
 	@DeleteMapping("candidat/{id}/mes_rdv")
 	public void deleteOneRdv(@RequestBody Rdv r) {
 		rdvRep.delete(r);
 	}
-	
+	*/
 	
 	
 }
