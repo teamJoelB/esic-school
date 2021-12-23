@@ -1,5 +1,6 @@
 package fr.esic;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +13,13 @@ import fr.esic.entities.Formation;
 import fr.esic.entities.Qcm;
 
 import fr.esic.entities.Rdv;
-
+import fr.esic.entities.Session;
 import fr.esic.repository.FormationRepository;
 
 import fr.esic.repository.QcmRepository;
 
 import fr.esic.repository.RdvRepository;
+import fr.esic.repository.SessionRepository;
 import fr.esic.repository.UtilisateurRepository;
 import fr.esic.rest.MailRest;
 import fr.esic.services.MailService;
@@ -34,7 +36,8 @@ public class EsicSchoolBackApplication implements CommandLineRunner {
 	private QcmRepository qcmRepo;
 	@Autowired
 	private RdvRepository rdvRepo;
-
+	@Autowired
+	private SessionRepository sessionRepo;
 
 	public static void main(String[] args) {
 		SpringApplication.run(EsicSchoolBackApplication.class, args);
@@ -50,15 +53,13 @@ public class EsicSchoolBackApplication implements CommandLineRunner {
 		Formation f4 = new Formation(null, 6,"CEA","Concepteur developpeur d'application");
 		Formation f5 = new Formation(null, 5,"BTSS LAM","Solutions logicielles et applications métier");
 		Formation f6 = new Formation(null, 7,"IA","Ingenieur affaire");
-		Formation f7 = new Formation(null, 6,"RCM","Responsable Commercial et marketing");
-		
+	
 		formationRepo.save(f1);
 		formationRepo.save(f2);
 		formationRepo.save(f3);
 		formationRepo.save(f4);
 		formationRepo.save(f5);
 		formationRepo.save(f6);
-		formationRepo.save(f7);
 
 		/*
 		Utilisateur u1 = new Utilisateur(Role.CANDIDAT, null, "chameau@yahoo.fr", "lama", "Sapin", "Noël", null, false, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, 0, null, null, null, null, false, null, null, null, false, null, null, false, null, null, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, false, 0, false, null, null, 0, null, null, 0, null, false, null, null, null, null, null, null, null, false, null, null, null, null, null, null, null, null, null, null);
@@ -105,6 +106,28 @@ public class EsicSchoolBackApplication implements CommandLineRunner {
 		Rdv r1 = new Rdv(null, new Date(), "entretien test 785", u2, u1, "lien@teams", "Ceci est un message additionnel.", false);
 		rdvRepo.save(r1);
 		System.out.println(u2);*/
-
+		
+		String pattern = "yyyy-MM-dd";
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		
+		
+		Session s1 = new Session(null,"Session du 12/02/2022 au 20/06/2022 - Administrateur reseau");
+		Session s2 = new Session(null,"Session du 15/02/2022 au 15/06/2022 - AR");
+		Session s3 = new Session(null,"Session du 18/09/2022 au 15/06/2023 - TSSR");
+		Session s4 = new Session(null,"Session du 18/09/2022 au 18/06/2024 - CEA");
+		Session s5 = new Session(null,"Session du 18/09/2022 au 15/06/2023 - RCM");
+		Session s6 = new Session(null,"Session du 25/09/2022 au 15/06/2023 - AR");
+		Session s7 = new Session(null,"Session du 22/09/2022 au 15/05/2023 - CEA");
+		
+		
+		sessionRepo.save(s1);
+		sessionRepo.save(s2);
+		sessionRepo.save(s3);
+		sessionRepo.save(s4);
+		sessionRepo.save(s5);
+		sessionRepo.save(s6);
+		sessionRepo.save(s7);
+		
+		
 	}
 }
