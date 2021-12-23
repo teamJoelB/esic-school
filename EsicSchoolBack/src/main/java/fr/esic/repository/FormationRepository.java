@@ -11,6 +11,6 @@ public interface FormationRepository extends CrudRepository<Formation, Long> {
 	public Optional<Formation> findByIntitule(String intitule);
 
 	//@Query(value = "DELETE FROM Formation f  WHERE f.intitule = ?1")
-	public void deleteByIntitule(String intitule);
+	//public void deleteByIntitule(String intitule);
 
 }
