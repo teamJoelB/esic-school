@@ -38,10 +38,15 @@ public class FormationRest {
 		return formationRepo.save(f);
 	}
 	
-	//voir une formation
-	@GetMapping("formation/{intitule}")
+	//voir une formation par intitule
+	@GetMapping("formation/intitule/{intitule}")
 	public Optional<Formation> findByIntitule (@PathVariable String intitule){
 		return formationRepo.findByIntitule(intitule);
+	}
+	
+	@GetMapping("formation/{nomComplet}")
+	public Optional<Formation> findByNomComplet (@PathVariable String nomComplet){
+		return formationRepo.findByNomComplet(nomComplet);
 	}
 	
 	
