@@ -19,7 +19,8 @@ import fr.esic.repository.QcmRepository;
 
 import fr.esic.repository.RdvRepository;
 import fr.esic.repository.UtilisateurRepository;
-
+import fr.esic.rest.MailRest;
+import fr.esic.services.MailService;
 import fr.esic.entities.Utilisateur;
 import fr.esic.entities.enums.Role;
 
@@ -42,8 +43,6 @@ public class EsicSchoolBackApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		System.out.println("lancement projet OK");
-		
-		
 		
 		Formation f1 = new Formation(null, 5,"TSSR","nomcplet ?");
 		Formation f2 = new Formation(null, 6,"AR","Administrateur_reseau");
@@ -76,26 +75,10 @@ public class EsicSchoolBackApplication implements CommandLineRunner {
 				false, null, null, null, null, null, null, null, false, null, null, null, null, null, null, null, null,
 				null, null);
 		userRepo.save(u3);
-		System.out.println(u3);
-		//Utilisateur u1 = new Utilisateur(Role.CANDIDAT, null, "chameau@yahoo.fr", "lama", "Sapin", "Noël", null, false, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, 0, null, null, null, null, false, null, null, null, false, null, null, false, null, null, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, false, 0, false, null, null, 0, null, null, 0, null, false, null, null, null, null, null, null, null, false, null, null, null, null, null, null, null, null, null, null);
-		//Utilisateur u2 = new Utilisateur(Role.CONSEILLER_DE_FORMATION, null, "burtznicolas@yahoo.fr", "banane", "Burtz", "Nicolas", null, false, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, 0, null, null, null, null, false, null, null, null, false, null, null, false, null, null, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, false, 0, false, null, null, 0, null, null, 0, null, false, null, null, null, null, null, null, null, false, null, null, null, null, null, null, null, null, null, null);
-		//Utilisateur u4 = new Utilisateur(Role.CANDIDAT, null, "juliette.pims@gmail.com", "chameau", "Lama", "Sté", null, false, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, 0, null, null, null, null, false, null, null, null, false, null, null, false, null, null, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, false, 0, false, null, null, 0, null, null, 0, null, false, null, null, null, null, null, null, null, false, null, null, null, null, null, null, null, null, null, null);
-
-		//Utilisateur u1 = new Utilisateur(Role.CANDIDAT, null, "chameau@yahoo.fr", "lama", "Sapin", "Noël", null, false,
-				null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, 0, null, null,
-				null, null, false, null, null, null, false, null, null, false, null, null, null, null, null, null, 0,
-				null, null, null, null, null, null, null, null, null, null, false, 0, false, null, null, 0, null, null,
-				0, null, false, null, null, null, null, null, null, null, false, null, null, null, null, null, null,
-				null, null, null, null);
-		Utilisateur u2 = new Utilisateur(Role.CANDIDAT, null, "burtznicolas@yahoo.fr", "banane", "Burtz", "Nicolas",
-				null, false, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, 0,
-				null, null, null, null, false, null, null, null, false, null, null, false, null, null, null, null, null,
-				null, 0, null, null, null, null, null, null, null, null, null, null, false, 0, false, null, null, 0,
-				null, null, 0, null, false, null, null, null, null, null, null, null, false, null, null, null, null,
-				null, null, null, null, null, null);*/
+		System.out.println(u3);*/
 		
-		Utilisateur u1 = new Utilisateur(Role.CANDIDAT, null, "juliette.pims@gmail.com", "chameau", "Lama", "Sté", 0, null);
-		Utilisateur u2 = new Utilisateur(Role.CONSEILLER_DE_FORMATION, null, "faux@gmail.com", "sapin", "Con", "Nard",2,null);
+		Utilisateur u1 = new Utilisateur(Role.CANDIDAT, null, "juliette.pims@gmail.com", "chameau", "Lama", "Sté", 0, null, true);
+		Utilisateur u2 = new Utilisateur(Role.CONSEILLER_DE_FORMATION, null, "faux@gmail.com", "sapin", "Con", "Nard",2, null, true);
 		userRepo.save(u1);
 		userRepo.save(u2);
 		 

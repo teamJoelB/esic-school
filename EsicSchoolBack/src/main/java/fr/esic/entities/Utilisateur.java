@@ -38,22 +38,8 @@ public class Utilisateur {
 	@ManyToOne
 	private Formation formation;
 	
-	public Utilisateur(Role role, Long id, String mail, String mdp, String nomUsage, String prenom,
-			int avancementInscrit, Formation formation) {
-		super();
-		this.role = role;
-		this.id = id;
-		this.mail = mail;
-		this.mdp = mdp;
-		this.nomUsage = nomUsage;
-		this.prenom = prenom;
-		this.avancementInscrit = avancementInscrit;
-		this.formation = formation;
-	}
-	
-	
 	// ATTRIBUTS PROPRES AU CANDIDAT
-	
+	private boolean actif;
 	private String nomNaissance;
 	private boolean civ;
 	@CreationTimestamp
@@ -170,6 +156,17 @@ public class Utilisateur {
 	private String nomhandi;
 	@Lob
 	private byte[] handi;
-		
-
+	
+	public Utilisateur(Role role, Long id, String mail, String mdp, String nomUsage, String prenom, int avancementInscrit, Formation formation, boolean actif) {
+		super();
+		this.role = role;
+		this.id = id;
+		this.mail = mail;
+		this.mdp = mdp;
+		this.nomUsage = nomUsage;
+		this.prenom = prenom;
+		this.avancementInscrit = avancementInscrit;
+		this.formation = formation;
+		this.actif = actif;
+	}
 }

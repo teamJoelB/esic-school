@@ -11,9 +11,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.http.ResponseEntity;
+
+import fr.esic.entities.Mail;
 import fr.esic.entities.Utilisateur;
 import fr.esic.entities.enums.Role;
 import fr.esic.repository.UtilisateurRepository;
+import fr.esic.services.MailService;
 
 @RestController
 
@@ -31,10 +36,18 @@ public class UtilisateurRest {
 	
 	// Creer un nouvel utilisateur (inscription)
 	@PostMapping("inscription")
-	public Utilisateur createUtilisateur (@RequestBody Utilisateur i) {
-		i.setRole(Role.CANDIDAT);
-		userRepo.save(i);
-		return i;
+	public Utilisateur createUtilisateur(@RequestBody Utilisateur u) {
+		u.setRole(Role.CANDIDAT);
+		u.setActif(true);
+		userRepo.save(u);
+		int tailleCode = 6;
+		String code = MailService.getRandomStr(tailleCode);
+		String objet = "Inscription Essic School";
+		String message = "Bonjour, \n\nVeuillez saisir le code ci-dessous pour finaliser votre inscription à Esic School :\n"
+				+ "\t" + code;
+		Mail m = new Mail(null, objet, u, message, code);
+		MailService.sendMail(u.getMail(), objet, message);
+		return u;
 	}
 	
 	// Afficher tous les utilisateurs (fonctionnalité Administrateur)
@@ -49,10 +62,13 @@ public class UtilisateurRest {
 		return userRepo.findById(id);
 	}
 	
-	// Suprimer un utilisateur suivant son mail (fonctionnalité Administrateur)
-	@DeleteMapping("admin/utilisateurs/{mail}")
-	public void deleteUtilisateur(@PathVariable String mail){
-		userRepo.deleteByMail(mail);
+	// Désactiver un utilisateur suivant son id au lieu de la supprimer
+	@PutMapping("utilisateur/{id}")
+	public ResponseEntity<Utilisateur> desactiveUtilisateur(@PathVariable Long id) throws ResourceNotFoundException {
+		Utilisateur u = userRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Utilisateur avec ID : " + id + " non trouvé"));
+		u.setActif(false);
+		final Utilisateur uUpdated = userRepo.save(u);
+	    return ResponseEntity.ok(uUpdated);
 	}
 	
 	//Afficher tous les candidats (visibles par tout le monde sauf les candidats)
