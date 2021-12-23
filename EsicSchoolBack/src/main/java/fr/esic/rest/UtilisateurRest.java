@@ -17,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 
 import fr.esic.entities.Formation;
 import fr.esic.entities.Mail;
+import fr.esic.entities.Qcm;
 import fr.esic.entities.Utilisateur;
 import fr.esic.entities.Visiteur;
 import fr.esic.entities.enums.Role;
@@ -125,7 +126,7 @@ public class UtilisateurRest {
 		return userRepo.save(userRepo.findById(id).get());}
 	
 	//ajout des pdf de l'utilisateur
-	@PutMapping("pdf/{id}")
+	@PutMapping("inscription/pdf/{id}")
 	public ResponseEntity<Utilisateur> insertPDF(@PathVariable Long id, @RequestBody Utilisateur utilisateurDetails) throws ResourceNotFoundException {	
 		Utilisateur u = userRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Formation avec ID : " + id + " non trouvée"));
 		u.setNomPieceid(utilisateurDetails.getNomPieceid());
@@ -143,4 +144,86 @@ public class UtilisateurRest {
 		final Utilisateur uUpdated = userRepo.save(u);
 	    return ResponseEntity.ok(uUpdated);
 	}
+<<<<<<< HEAD
+=======
+	
+	// pour test only
+	@PostMapping("inscription/information")
+	public Utilisateur createUser (@RequestBody Utilisateur u) {
+		userRepo.save(u);
+		return u;
+	}
+	
+	
+	//ajout des info de l'utilisateur lors de l'inscription a une formation
+	@PutMapping("inscription/information/{id}")
+	public ResponseEntity<Utilisateur> modifQcm(@PathVariable Long id, @RequestBody Utilisateur userDetails) throws ResourceNotFoundException {
+		Optional<Utilisateur> b = userRepo.findById(id);
+		if(b.isPresent()) {
+			Utilisateur q = userRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Formation avec Qcm : " + id + " non trouvée"));
+			
+			q.setParcours(userDetails.getParcours());
+			q.setNomUsage(userDetails.getNomUsage());  //////////////////////////////////////////////
+			q.setPrenom(userDetails.getPrenom());   //////////////////////////////////////////////
+			q.setNomNaissance(userDetails.getNomNaissance());
+			q.setDateNaissance(userDetails.getDateNaissance());
+			q.setLieuNaissance(userDetails.getLieuNaissance());
+			q.setAdresse(userDetails.getAdresse());
+			q.setCodePostal(userDetails.getCodePostal());
+			q.setVille(userDetails.getVille());
+			q.setTelFixe(userDetails.getTelFixe());
+			q.setTelPortable(userDetails.getTelPortable());
+			q.setMail(userDetails.getMail());  //////////////////////////////////////////////
+			q.setNationalité(userDetails.getNationalité());
+			q.setNumSecuSocial(userDetails.getNumSecuSocial());
+			
+			
+			
+			q.setNomRepresentant(userDetails.getNomRepresentant());
+			q.setPrenomRepresentant(userDetails.getPrenomRepresentant());
+			q.setTypeRepresentant(userDetails.getTypeRepresentant());
+			q.setAdresseRepresentant(userDetails.getAdresseRepresentant());
+			q.setCodePostalRepresentant(userDetails.getCodePostalRepresentant());
+			q.setVilleRepresentant(userDetails.getVilleRepresentant());
+			q.setTelFixeRepresentant(userDetails.getTelFixeRepresentant());
+			q.setTelPortableRepresentant(userDetails.getTelPortableRepresentant());
+			q.setEmailRepresentant(userDetails.getEmailRepresentant());
+			q.setSituationActuelle(userDetails.getSituationActuelle());
+			//q.setHandicap(false)
+			
+			
+			
+			
+			
+			
+			
+			final Utilisateur qUpdated = userRepo.save(q);
+		    return ResponseEntity.ok(qUpdated);
+		}else {
+			System.err.println("QCM non trouvé");
+			return null;
+		}	
+		
+	}	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+>>>>>>> branch 'master' of https://github.com/teamJoelB/esic-school.git
 }
