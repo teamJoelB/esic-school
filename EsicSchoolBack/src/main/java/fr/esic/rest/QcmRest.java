@@ -30,11 +30,10 @@ public class QcmRest {
 	@Autowired
 	QcmRepository qcmRepo;
 	
-	// voir toutes les questions
-	
+	// Voir toutes les questions
 	@GetMapping("qcm")
 	public Iterable<Qcm> getAllQcm(){
-	return qcmRepo.findAll();
+		return qcmRepo.findAll();
 	}
 
 	

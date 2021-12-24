@@ -3,6 +3,8 @@ package fr.esic.rest;
 import java.util.Properties;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.esic.entities.Rdv;
+import fr.esic.entities.Utilisateur;
 import fr.esic.repository.RdvRepository;
 import fr.esic.services.MailService;
 
@@ -22,7 +25,7 @@ import fr.esic.services.MailService;
 public class RdvRest {
 
 	@Autowired
-	private RdvRepository rdvRep;
+	private RdvRepository rdvRepo;
 	
 	// VERSION 1
 	/*
@@ -38,11 +41,10 @@ public class RdvRest {
 				+ "Pour valider ou refuser ce RDV, connectez-vous à votre espace personnel.\n"
 				+ r.getMessage() + "\n\nCordialement,\n\n"
 				+ "\t" + r.getEmetteur().getPrenom() + " " + r.getEmetteur().getNomUsage();
-		sendMail(r.getDestinataire().getMail(), r.getObjet(), contenu);
+		MailService.sendMail(r.getDestinataire().getMail(), r.getObjet(), contenu);
 		return r;
-	}
-	*/
-	
+	}*/
+	/*
 	// VERSION 2
 	@PostMapping("admin/{prenom}_{nomUsage}/creation_rdv")
 	public Rdv creationRdv(@RequestBody Rdv r, @PathVariable String prenom, @PathVariable String nomUsage) {
@@ -58,16 +60,47 @@ public class RdvRest {
 				+ "\t" + prenom + " " + nomUsage;
 		MailService.sendMail(r.getDestinataire().getMail(), r.getObjet(), contenu);
 		return r;
+	}*/
+	/*
+	//VERSION 3 non fonctionelle
+	@PostMapping("admin/creation_rdv/{id}")
+	public Rdv choixDestinataire(@PathVariable int id, @RequestBody Utilisateur destinataire) {
+		Utilisateur emetteur = new 
+		Rdv r = new Rdv(null, null, null, null, destinataire, null, null, false);
+		rdvRepo.save(r);
+		return r;
 	}
+	
+	//id du rdv
+	@PostMapping("admin/creation_rdv/{id}")
+	public ResponseEntity<Rdv> creationRdv(@PathVariable Long id, @RequestBody Rdv r) {
+		Rdv rdv = rdvRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("RDV avec ID : " + id + " non trouvé"));
+		rdv.setDate(r.getDate());
+		rdv.setObjet(r.getObjet());
+		rdv.setLien(r.getLien());
+		rdv.setMessage(r.getMessage());
+		String contenu = "Bonjour " + rdv.getDestinataire().getPrenom()
+				+ " " + rdv.getDestinataire().getNomUsage() + ",\n"
+				+ "\nVous êtes convoqué pour un entretien visio via Teams à la date du "
+				+ rdv.getDate() +".\n"
+				+ "Vous trouverez le lien de la réunion ci-dessous : \n"
+				+ rdv.getLien() + "\n"
+				+ "Pour valider ou refuser ce RDV, connectez-vous à votre espace personnel.\n"
+				+ rdv.getMessage() + "\n\nCordialement,\n\n"
+				+ "\t" + rdv.getEmetteur().getPrenom() + " " + r.getEmetteur().getNomUsage();
+		MailService.sendMail(r.getDestinataire().getMail(), r.getObjet(), contenu);
+		return rdv;
+	}*/
+	
 	
 	@GetMapping("candidat/{id}/mes_rdv")
 	public Iterable<Rdv> dispAllRdv(@PathVariable Long id) {
-		return rdvRep.getRdvForOne(id);
+		return rdvRepo.getRdvForOne(id);
 	}
 	
 	@GetMapping("rdv")
 	public Iterable<Rdv> dispAllRdv() {
-		return rdvRep.findAll();
+		return rdvRepo.findAll();
 	}
 	
 	/*
