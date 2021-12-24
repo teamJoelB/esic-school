@@ -58,7 +58,7 @@ public class Utilisateur {
 	private String telPortable;
 	private String nationalité;
 	
-	private Long numSecuSocial;
+	private String numSecuSocial;
 	private String situationActuelle;
 		
 	private String nomRepresentant;

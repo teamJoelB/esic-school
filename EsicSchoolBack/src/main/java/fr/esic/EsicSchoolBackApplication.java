@@ -1,5 +1,6 @@
 package fr.esic;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ import fr.esic.repository.SessionRepository;
 import fr.esic.repository.UtilisateurRepository;
 import fr.esic.services.MailService;
 import fr.esic.entities.Utilisateur;
+import fr.esic.entities.enums.Langue;
+import fr.esic.entities.enums.NiveauLangue;
 import fr.esic.entities.enums.Role;
 
 @SpringBootApplication
@@ -106,11 +109,21 @@ public class EsicSchoolBackApplication implements CommandLineRunner {
 		Utilisateur admin = new Utilisateur(Role.ADMINISTRATEUR, null, "lama@mail.fr", "mdp", "Némar", "Jean", 0, s3,
 				false);
 		
+		DateFormat d = new SimpleDateFormat("yyyy/MM/dd");
+		Utilisateur u6 = new Utilisateur(Role.CANDIDAT, null, "coco@yahoo.fr", "lama", "burtz", "nicolas", 0,s1,
+		"ing", false, "burtz", false, null,d.parse("1999/01/01") , "Paris", "rue lacourbe", 95, "Paris", "0650605060", "0650605069", "Francaise", "06506050607262", "salarié", "JACK", "tom",
+		"pere", "rue lacourbe", 95, "Paris", "0650605635", "0650605066", "jack@gmail.com", false, "Solutec", "Rue Carotte", "non merci", true, "Jack95", d.parse("2020/01/01"), false,"paris3", "Lulu", "terminal",
+		"bac", "brevet", "ASSR", 2, "bon", "bon", "francais", "courant", Langue.Arabe, NiveauLangue.A2, Langue.Allemand, NiveauLangue.A1, Langue.Arabe_égyptien, NiveauLangue.A1, Langue.Cantonais, NiveauLangue.A1,
+		true, 1, false, "ALI", "rue lecourbe", 75, "Paris", "rue lecourbe", 75, "Paris", false, d.parse("2022/01/01"), "JAI", "Olivier", "Ingénieur", "0645524020", "olivier@gmail.com", "A",
+		false, "non", "Avons nous manger?", "Avons nous manger2?", "Avons nous manger3?", "Avons nous manger4?", "Avons nous manger5?", "Avons nous manger6?", "Avons nous manger7?", "Avons nous manger8?", "non", null, null, null, null, null, null,
+		null, null, null, null, null, null);
+		
 		userRepo.save(u1);
 		userRepo.save(u2);
 		userRepo.save(u3);
 		userRepo.save(u4);
 		userRepo.save(u5);		
+		userRepo.save(u6);		
 		userRepo.save(admin);
 		
 		/*
