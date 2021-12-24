@@ -56,7 +56,22 @@ public class EsicSchoolBackApplication implements CommandLineRunner {
 		formationRepo.save(f4);
 		formationRepo.save(f5);
 		formationRepo.save(f6);
+		
+		Session s1 = new Session(null, "Session du 12/02/2022 au 20/06/2022 - IA", f6);
+		Session s2 = new Session(null, "Session du 15/02/2022 au 15/06/2022 - AR", f2);
+		Session s3 = new Session(null, "Session du 18/09/2022 au 15/06/2023 - TSSR", f1);
+		Session s4 = new Session(null, "Session du 18/09/2022 au 18/06/2024 - CEA", f4);
+		//Session s5 = new Session(null, "Session du 18/09/2022 au 15/06/2023 - RCM", );
+		Session s6 = new Session(null, "Session du 25/09/2022 au 15/06/2023 - AR", f2);
+		Session s7 = new Session(null, "Session du 22/09/2022 au 15/05/2023 - CEA", f4);
 
+		sessionRepo.save(s1);
+		sessionRepo.save(s2);
+		sessionRepo.save(s3);
+		sessionRepo.save(s4);
+		//sessionRepo.save(s5);
+		sessionRepo.save(s6);
+		sessionRepo.save(s7);
 		
 
 		Utilisateur u1 = new Utilisateur(Role.CANDIDAT, null, "chameau@yahoo.fr", "lama", "Sapin", "Noël", 0, null,
@@ -84,11 +99,11 @@ public class EsicSchoolBackApplication implements CommandLineRunner {
 				null, null);
 
 		Utilisateur u4 = new Utilisateur(Role.CANDIDAT, null, "juliette.pims@gmail.com", "chameau", "Lama", "Sté", 0,
-				null, true);
+				s1, true);
 		Utilisateur u5 = new Utilisateur(Role.CONSEILLER_DE_FORMATION, null, "faux@gmail.com", "sapin", "Con", "Nard",
-				2, null, true);
+				2, s2, true);
 		
-		Utilisateur admin = new Utilisateur(Role.ADMINISTRATEUR, null, "lama@mail.fr", "mdp", "Némar", "Jean", 0, f6,
+		Utilisateur admin = new Utilisateur(Role.ADMINISTRATEUR, null, "lama@mail.fr", "mdp", "Némar", "Jean", 0, s3,
 				false);
 		
 		userRepo.save(u1);
@@ -127,23 +142,7 @@ public class EsicSchoolBackApplication implements CommandLineRunner {
 		String pattern = "yyyy-MM-dd";
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 
-		Session s1 = new Session(null, "Session du 12/02/2022 au 20/06/2022 - IA");
-		Session s2 = new Session(null, "Session du 15/02/2022 au 15/06/2022 - AR");
-		Session s3 = new Session(null, "Session du 18/09/2022 au 15/06/2023 - TSSR");
-		Session s4 = new Session(null, "Session du 18/09/2022 au 18/06/2024 - CEA");
-		Session s5 = new Session(null, "Session du 18/09/2022 au 15/06/2023 - RCM");
-		Session s6 = new Session(null, "Session du 25/09/2022 au 15/06/2023 - AR");
-		Session s7 = new Session(null, "Session du 22/09/2022 au 15/05/2023 - CEA");
-		Session s8 = new Session(null, "____________________________________________");
-
-		sessionRepo.save(s1);
-		sessionRepo.save(s2);
-		sessionRepo.save(s3);
-		sessionRepo.save(s4);
-		sessionRepo.save(s5);
-		sessionRepo.save(s6);
-		sessionRepo.save(s7);
-		sessionRepo.save(s8);
+		
 
 	}
 }
