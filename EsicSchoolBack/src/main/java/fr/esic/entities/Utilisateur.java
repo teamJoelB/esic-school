@@ -36,7 +36,8 @@ public class Utilisateur {
 	//ATTRIBUTS PROPRES A L AVANCEMENT INSCRIPTION
 	private int avancementInscrit;  //-1 compte non actif 0 juste un compte 1 postule 2 piece valide 3 attente test 4 test passé attente result 5 inscrit
 	@ManyToOne
-	private Formation formation;
+	private Session session;
+	//private Formation formation;
 	private String parcours;
 	
 	// ATTRIBUTS PROPRES AU CANDIDAT
@@ -163,7 +164,7 @@ public class Utilisateur {
 	@Lob
 	private byte[] handi;
 	
-	public Utilisateur(Role role, Long id, String mail, String mdp, String nomUsage, String prenom, int avancementInscrit, Formation formation, boolean actif) {
+	public Utilisateur(Role role, Long id, String mail, String mdp, String nomUsage, String prenom, int avancementInscrit, Session session, boolean actif) {
 		super();
 		this.role = role;
 		this.id = id;
@@ -172,7 +173,7 @@ public class Utilisateur {
 		this.nomUsage = nomUsage;
 		this.prenom = prenom;
 		this.avancementInscrit = avancementInscrit;
-		this.formation = formation;
+		this.session = session;
 		this.actif = actif;
 	}
 
